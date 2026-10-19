@@ -10,8 +10,8 @@ describe('GreetingComponent (TestBed overrides)', () => {
 
   it('overrideProvider replaces a root service', () => {
     TestBed.overrideProvider(GreetingService, { useValue: { greet: (n: string) => `Bonjour, ${n}!` } });
-    cy.mount(GreetingComponent, { componentProperties: { name: 'Rosa' } });
-    cy.get('[data-cy=greeting]').should('have.text', 'Bonjour, Rosa!');
+    cy.mount(GreetingComponent, { componentProperties: { name: 'Ada' } });
+    cy.get('[data-cy=greeting]').should('have.text', 'Bonjour, Ada!');
   });
 
   it('overrideComponent replaces component-level providers', () => {

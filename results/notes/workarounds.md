@@ -35,11 +35,11 @@ with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
 
 ### analog / analog-aot / oxc (Vite)
 
-- Same Vite config for all three. Only the Angular plugin differs. It uses the monorepo's `optimizeDeps`
+- Same Vite config for all three. Only the Angular plugin differs. It uses a production monorepo's `optimizeDeps`
   (`noDiscovery` plus the Angular include list), `resolve.mainFields: ['module']` and `resolve.dedupe`.
   Three entries were added to the include list: `@angular/platform-browser/testing` (`@cypress/angular` 5 imports it,
   not `platform-browser-dynamic/testing`), and `@angular/cdk/dialog` (used by the dialog spec).
-  The monorepo's `tty` shim for CDK was not needed.
+  The `tty` shim that monorepo needs for CDK was not needed here.
 - `vite-tsconfig-paths` gets the root `tsconfig.json`, not `cypress/tsconfig.json`. The plugin applies a
   tsconfig's `paths` only to importers under that tsconfig's directory, so `cypress/tsconfig.json` never matched
   `src/**` (the `@scale/*` alias failed to resolve).
@@ -48,7 +48,7 @@ with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
   partial-compiled packages (CDK) therefore get JIT-linked at runtime through `@angular/compiler`, while
   non-pre-bundled `node_modules` packages (the sandbox's `sandbox-ui-lib`) go through its transform-time linker.
 - `analog-aot` (`jit: false`) fails `TestBed.overrideComponent` (2 tests in `greeting.cy.ts`). AOT strips the
-  decorator TestBed needs to recompile the component. This is why the monorepo uses `jit: true`. Its timings are
+  decorator TestBed needs to recompile the component. This is why a production monorepo using Analog sets `jit: true`. Its timings are
   still listed for reference.
 
 ### Spec-level notes (all setups)

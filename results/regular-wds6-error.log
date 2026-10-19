@@ -10,10 +10,10 @@ Your configFile threw an error from: cypress.config.js
 We stopped running your tests because your config file crashed.
 
 Error: Unexpected major version of webpack-dev-server. Cypress webpack-dev-server works with webpack-dev-server versions 5 - saw 6.0.0
-    at getMajorVersion (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:199:15)
-    at sourceWebpackDevServer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:136:37)
-    at sourceDefaultWebpackDependencies (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:186:30)
-    at angularHandler (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/angularHandler.js:214:142)
-    at async getPreset (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/devServer.js:61:20)
-    at async devServer.create (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/devServer.js:78:61)
-    at async /home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/devServer.js:22:24
+    at getMajorVersion (~/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:199:15)
+    at sourceWebpackDevServer (~/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:136:37)
+    at sourceDefaultWebpackDependencies (~/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:186:30)
+    at angularHandler (~/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/angularHandler.js:214:142)
+    at async getPreset (~/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/devServer.js:61:20)
+    at async devServer.create (~/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/devServer.js:78:61)
+    at async ~/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/devServer.js:22:24

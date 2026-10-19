@@ -5,7 +5,7 @@
    `$safeNavigationMigration(item?.id)` in a `(click)` handler passes `null` for a `@for` item and for an `@if … as`
    alias (#587). A `SafeUrl` bound to a library component's `img [src]` is written out as the literal string
    `SafeValue must use [property]=binding: …` (#588). `analog-aot` fails the 2 `TestBed.overrideComponent` tests,
-   which confirms why the monorepo needs `jit: true` with Analog. OXC's AOT output keeps the class metadata, so the
+   which confirms why a production monorepo using Analog needs `jit: true`. OXC's AOT output keeps the class metadata, so the
    same overrides pass.
 2. **Full suite (43 tests, 14 specs):** oxc 27.0 s, analog 29.6 s, regular 34.2 s. That makes oxc 0.79× regular
    and 0.91× analog. analog-aot's 49.2 s includes 2 × 10 s of failing-assertion timeouts. Without them it lands

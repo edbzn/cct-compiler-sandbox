@@ -4,7 +4,7 @@ specs and components. Every run is cold: compiler and dev-server caches are dele
 | setup | dev server | Angular compilation |
 |---|---|---|
 | `regular` | Cypress `framework: 'angular', bundler: 'webpack'`: angular.json + `@angular-devkit/build-angular` webpack config, with Cypress's default `justInTimeCompile` | JIT (Cypress forces `aot: false`), `@ngtools/webpack` + Babel |
-| `analog` | Cypress `framework: 'angular', bundler: 'vite'` + `viteConfig` | `@analogjs/vite-plugin-angular` `{ jit: true }` (the monorepo's setting) |
+| `analog` | Cypress `framework: 'angular', bundler: 'vite'` + `viteConfig` | `@analogjs/vite-plugin-angular` `{ jit: true }` (a production monorepo's setting) |
 | `analog-aot` | same Vite config | `@analogjs/vite-plugin-angular` `{ jit: false }` |
 | `oxc` | same Vite config | `@oxc-angular/vite` (AOT, emits class metadata) |
 
