@@ -1,0 +1,14 @@
+{"event":"bench:spawn","t":1792427473823,"setup":"swc","pass":"bugs","run":1}
+{"event":"config:loaded","t":1792427474625,"setup":"swc"}
+{"event":"vite:configureServer","t":1792427474928}
+{"event":"vite:listening","t":1792427475091}
+{"event":"vite:firstTransform","t":1792427475169}
+{"event":"before:run","t":1792427475726}
+{"event":"before:spec","t":1792427476557,"spec":"src/known-oxc-bugs/library-safe-url.cy.ts"}
+{"event":"spec:firstTest","t":1792427477023,"spec":"src/known-oxc-bugs/library-safe-url.cy.ts"}
+{"event":"after:spec","t":1792427477080,"spec":"src/known-oxc-bugs/library-safe-url.cy.ts","stats":{"duration":67,"endedAt":"2026-10-19T16:31:17.078Z","failures":0,"passes":1,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:31:17.011Z","suites":1,"tests":1},"tests":[{"title":"known-oxc-bugs: SafeUrl bound to a library img [src] (#588) > unwraps the SafeUrl and loads the image","state":"passed","duration":64}]}
+{"event":"before:spec","t":1792427478147,"spec":"src/known-oxc-bugs/safe-navigation-event.cy.ts"}
+{"event":"spec:firstTest","t":1792427478512,"spec":"src/known-oxc-bugs/safe-navigation-event.cy.ts"}
+{"event":"after:spec","t":1792427478708,"spec":"src/known-oxc-bugs/safe-navigation-event.cy.ts","stats":{"duration":203,"endedAt":"2026-10-19T16:31:18.707Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:31:18.504Z","suites":1,"tests":2},"tests":[{"title":"known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @for item value to the handler","state":"passed","duration":120},{"title":"known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @if-as alias value to the handler","state":"passed","duration":81}]}
+{"event":"after:run","t":1792427479161,"totalTests":3,"totalPassed":3,"totalFailed":0,"totalPending":0,"totalSkipped":0,"totalDuration":270}
+{"event":"vite:buildEnd","t":1792427479174,"transforms":36}

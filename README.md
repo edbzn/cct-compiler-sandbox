@@ -8,9 +8,16 @@ setups and benchmarks them. Results: [`results/RESULTS.md`](results/RESULTS.md).
 | `regular` | Cypress `framework: 'angular', bundler: 'webpack'` (angular.json + `@angular-devkit/build-angular`) | JIT, `@ngtools/webpack` |
 | `analog` (default) | Cypress `framework: 'angular', bundler: 'vite'` + `viteConfig` | `@analogjs/vite-plugin-angular` `{ jit: true }` |
 | `analog-aot` | same Vite config | `@analogjs/vite-plugin-angular` `{ jit: false }` |
+| `angular-build` | same Vite config | Analog with `experimental.useAngularCompilationAPI` + `{ jit: false }`: `@angular/build`'s `createAngularCompilation` (the CLI esbuild builder's AOT pipeline) |
+| `angular-build-jit` | same Vite config | same, `{ jit: true }` |
 | `oxc` | same Vite config | `@oxc-angular/vite` (AOT with class metadata) |
+| `swc` | same Vite config | `unplugin-swc` + `@jscutlery/swc-angular` preset, runtime JIT (support file `cypress/support/component-swc.ts` adds `reflect-metadata`) |
 
-All four live in one [`cypress.config.ts`](cypress.config.ts), selected by the `CCT_SETUP` environment variable.
+Cypress has no esbuild / `@angular/build` dev server for Angular component testing
+([cypress-io/cypress#30903](https://github.com/cypress-io/cypress/issues/30903)). The `angular-build*` setups are the
+closest stand-in: Angular's esbuild-builder compilation pipeline running inside Cypress's Vite dev server.
+
+All of them live in one [`cypress.config.ts`](cypress.config.ts), selected by the `CCT_SETUP` environment variable.
 
 ## Setup
 
@@ -29,19 +36,23 @@ CCT_SETUP=regular    pnpm exec cypress run --component
 CCT_SETUP=analog     pnpm exec cypress run --component
 CCT_SETUP=analog-aot pnpm exec cypress run --component
 CCT_SETUP=oxc        pnpm exec cypress run --component
+CCT_SETUP=angular-build     pnpm exec cypress run --component
+CCT_SETUP=angular-build-jit pnpm exec cypress run --component
+CCT_SETUP=swc               pnpm exec cypress run --component
 
 # a subset
 CCT_SETUP=oxc pnpm exec cypress run --component --spec 'src/known-oxc-bugs/*.cy.ts'
 ```
 
 Set `TMPDIR=$PWD/.tmp` to keep Cypress's temporary files out of `/tmp`. The bench script does this.
-Delete `.angular/` and `.cypress-vite/` to get a cold compile.
+Delete `.angular/`, `.cypress-vite/`, `node_modules/.cache/` and `.swc/` to get a cold compile.
 
 ## Benchmark
 
 ```sh
 node scripts/bench.mjs --runs 3 --passes all,scale,bugs --scale-n 300
 node scripts/bench.mjs --runs 3 --passes scale --scale-n 1000 --label n1000
+node scripts/bench.mjs --setups oxc --runs 3 --passes all --label control   # cross-session drift check
 node scripts/report.mjs          # results/runs.jsonl -> results/summary.json + results/RESULTS.md
 ```
 

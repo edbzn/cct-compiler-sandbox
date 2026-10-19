@@ -1,6 +1,6 @@
 // Cold-cache benchmark of the CCT compiler setups. Runs strictly one Cypress process at a time.
 //
-// Usage: node scripts/bench.mjs [--setups regular,analog,analog-aot,oxc] [--runs 3] [--passes all,scale,bugs]
+// Usage: node scripts/bench.mjs [--setups regular,analog,analog-aot,angular-build,angular-build-jit,oxc,swc] [--runs 3] [--passes all,scale,bugs]
 //                               [--scale-n 300] [--label n1000] [--out results]
 //
 // Passes (spec groups):
@@ -19,7 +19,7 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = Object.fromEntries(
   process.argv.slice(2).reduce((acc, a, i, all) => (a.startsWith('--') ? [...acc, [a.slice(2), all[i + 1]]] : acc), []),
 );
-const setups = (args.setups ?? 'regular,analog,analog-aot,oxc').split(',');
+const setups = (args.setups ?? 'regular,analog,analog-aot,angular-build,angular-build-jit,oxc,swc').split(',');
 const runs = Number(args.runs ?? 3);
 const passes = (args.passes ?? 'all,scale,bugs').split(',');
 const scaleN = Number(args['scale-n'] ?? 300);
@@ -36,7 +36,7 @@ const SPECS = {
 const PASS_RUNS = { bugs: 1 };
 
 // Everything a compiler/dev server may cache between runs.
-const COLD_PATHS = ['.angular', '.cypress-vite', 'node_modules/.vite', 'node_modules/.cache', '.tmp/cypress-angular-ct', 'out-tsc'];
+const COLD_PATHS = ['.angular', '.cypress-vite', 'node_modules/.vite', 'node_modules/.cache', '.tmp/cypress-angular-ct', 'out-tsc', '.swc'];
 const makeCold = () => COLD_PATHS.forEach((p) => fs.rmSync(path.join(root, p), { recursive: true, force: true }));
 
 const PAGE = 4096;

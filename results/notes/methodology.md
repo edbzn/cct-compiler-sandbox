@@ -7,7 +7,7 @@
   never runs more than one Cypress process at a time. Setup order rotates per run, so no setup always goes first.
 - **Cold runs:** before every run the script deletes `.angular/` (the webpack persistent cache, about 130 MB),
   `.cypress-vite/` (Vite `cacheDir`, including the optimizeDeps pre-bundle), `node_modules/.vite`,
-  `node_modules/.cache`, `.tmp/cypress-angular-ct` and `out-tsc`. The OS page cache stays warm: dropping it needs
+  `node_modules/.cache` (which holds Analog's cache), `.tmp/cypress-angular-ct`, `out-tsc` and `.swc/` (SWC's Wasm plugin cache). The OS page cache stays warm: dropping it needs
   root, and it is equally warm for every setup.
 - **Spec groups:** `all` = 11 hand-written specs plus the 3 generated scale specs (37 + 6 = 43 tests). `scale` = the 3
   scale specs alone. `scale-n1000` = the same 3 specs regenerated with 1000 components. `bugs` = `src/known-oxc-bugs`

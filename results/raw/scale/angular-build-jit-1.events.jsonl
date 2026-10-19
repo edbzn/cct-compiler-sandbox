@@ -1,0 +1,17 @@
+{"event":"bench:spawn","t":1792427379433,"setup":"angular-build-jit","pass":"scale","run":1}
+{"event":"config:loaded","t":1792427380206,"setup":"angular-build-jit"}
+{"event":"vite:configureServer","t":1792427380833}
+{"event":"vite:listening","t":1792427383161}
+{"event":"vite:firstTransform","t":1792427383166}
+{"event":"before:run","t":1792427384094}
+{"event":"before:spec","t":1792427385095,"spec":"src/scale/specs/scale-0.cy.ts"}
+{"event":"spec:firstTest","t":1792427385974,"spec":"src/scale/specs/scale-0.cy.ts"}
+{"event":"after:spec","t":1792427386361,"spec":"src/scale/specs/scale-0.cy.ts","stats":{"duration":394,"endedAt":"2026-10-19T16:29:46.359Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:29:45.965Z","suites":1,"tests":2},"tests":[{"title":"scale fixture root 0 (100 generated components) > renders every generated component in the chains","state":"passed","duration":269},{"title":"scale fixture root 0 (100 generated components) > bubbles outputs up a chain","state":"passed","duration":122}]}
+{"event":"before:spec","t":1792427386910,"spec":"src/scale/specs/scale-1.cy.ts"}
+{"event":"spec:firstTest","t":1792427387704,"spec":"src/scale/specs/scale-1.cy.ts"}
+{"event":"after:spec","t":1792427388095,"spec":"src/scale/specs/scale-1.cy.ts","stats":{"duration":398,"endedAt":"2026-10-19T16:29:48.094Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:29:47.696Z","suites":1,"tests":2},"tests":[{"title":"scale fixture root 1 (100 generated components) > renders every generated component in the chains","state":"passed","duration":276},{"title":"scale fixture root 1 (100 generated components) > bubbles outputs up a chain","state":"passed","duration":119}]}
+{"event":"before:spec","t":1792427388638,"spec":"src/scale/specs/scale-2.cy.ts"}
+{"event":"spec:firstTest","t":1792427389409,"spec":"src/scale/specs/scale-2.cy.ts"}
+{"event":"after:spec","t":1792427389798,"spec":"src/scale/specs/scale-2.cy.ts","stats":{"duration":400,"endedAt":"2026-10-19T16:29:49.797Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:29:49.397Z","suites":1,"tests":2},"tests":[{"title":"scale fixture root 2 (100 generated components) > renders every generated component in the chains","state":"passed","duration":279},{"title":"scale fixture root 2 (100 generated components) > bubbles outputs up a chain","state":"passed","duration":116}]}
+{"event":"after:run","t":1792427389803,"totalTests":6,"totalPassed":6,"totalFailed":0,"totalPending":0,"totalSkipped":0,"totalDuration":1192}
+{"event":"vite:buildEnd","t":1792427389815,"transforms":931}

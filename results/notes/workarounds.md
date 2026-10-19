@@ -33,9 +33,9 @@
 With these in place `regular` uses Cypress's built-in Angular handler unchanged: angular.json `build` options merged
 with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
 
-### analog / analog-aot / oxc (Vite)
+### analog / analog-aot / angular-build / angular-build-jit / oxc / swc (Vite)
 
-- Same Vite config for all three. Only the Angular plugin differs. It uses a production monorepo's `optimizeDeps`
+- Same Vite config for all six. Only the Angular plugin differs. It uses a production monorepo's `optimizeDeps`
   (`noDiscovery` plus the Angular include list), `resolve.mainFields: ['module']` and `resolve.dedupe`.
   Three entries were added to the include list: `@angular/platform-browser/testing` (`@cypress/angular` 5 imports it,
   not `platform-browser-dynamic/testing`), and `@angular/cdk/dialog` (used by the dialog spec).
@@ -50,6 +50,25 @@ with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
 - `analog-aot` (`jit: false`) fails `TestBed.overrideComponent` (2 tests in `greeting.cy.ts`). AOT strips the
   decorator TestBed needs to recompile the component. This is why a production monorepo using Analog sets `jit: true`. Its timings are
   still listed for reference.
+
+- `angular-build` / `angular-build-jit`: no workaround needed. Analog already loads `@angular/build/private`
+  (`createAngularCompilation`) itself. `@angular/build@22.2.0` was made a direct, pinned devDependency anyway, so
+  the version is explicit. It resolves to the same copy build-angular uses. `angular-build` (AOT) fails the same 2
+  `TestBed.overrideComponent` tests as `analog-aot`. `angular-build-jit` passes them.
+- `swc`: `unplugin-swc` with `swcAngularUnpluginOptions()` and default options, in place of an Angular plugin.
+  The preset's SWC plugin rewrites `templateUrl` into an `import … from './x.html?raw'` and `styleUrl` into a
+  `./x.scss?inline` import. Vite handles both natively, including SCSS through `sass`. The template is then compiled
+  in the browser by `@angular/compiler`. Two additions, both only for this setup:
+  - a separate support file, `cypress/support/component-swc.ts`, that imports `reflect-metadata` before the shared
+    support file. The preset emits legacy decorators with `design:paramtypes` metadata, and its README requires
+    `reflect-metadata` for constructor injection. The other setups don't load it.
+  - `reflect-metadata` added to `optimizeDeps.include`. It is a UMD/CommonJS script, and with `noDiscovery` it
+    would otherwise be served unbundled.
+
+  `useDefineForClassFields: false` (the README's fallback for property-inheritance issues) was not needed: every spec
+  passes with the defaults. `@swc/core` is pinned to 1.15.8 because the preset exits at load time on any other minor
+  (peer `~1.15.0`). pnpm's `allowBuilds` has to allow `@swc/core`'s postinstall. The SWC plugin cache (`.swc/`, about
+  7 MB of compiled Wasm) is deleted before every cold run like the other caches.
 
 ### Spec-level notes (all setups)
 

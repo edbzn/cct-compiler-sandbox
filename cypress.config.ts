@@ -10,11 +10,21 @@ import { installTsxImportMetaShim } from './cypress/tsx-import-meta-shim';
  *              the webpack-dev-server 5 override (pnpm-workspace.yaml) and installTsxImportMetaShim().
  *   analog     framework angular + bundler vite + @analogjs/vite-plugin-angular { jit: true }
  *   analog-aot same as analog with { jit: false }
+ *   angular-build      same Vite config + Analog with experimental.useAngularCompilationAPI, { jit: false }:
+ *                      compiles through @angular/build's createAngularCompilation (the CLI esbuild builder's AOT
+ *                      pipeline). Stand-in for "Cypress + esbuild", which Cypress does not offer for Angular
+ *                      (cypress-io/cypress#30903).
+ *   angular-build-jit  same with { jit: true } (TestBed override parity)
+ *   swc        same Vite config, but the Angular plugin is replaced with unplugin-swc +
+ *              @jscutlery/swc-angular's preset: SWC strips types/decorators to legacy decorator calls and
+ *              rewrites templateUrl/styleUrl into ?raw/?inline imports; templates compile at runtime (JIT)
+ *              through the support file's @angular/compiler. Uses cypress/support/component-swc.ts
+ *              (adds reflect-metadata).
  *   oxc        framework angular + bundler vite + @oxc-angular/vite (AOT, emits class metadata)
  * BENCH_EVENTS (optional) is a JSONL file the bench script reads for spec/dev-server timings.
  */
-type Setup = 'regular' | 'analog' | 'analog-aot' | 'oxc';
-const SETUPS: readonly Setup[] = ['regular', 'analog', 'analog-aot', 'oxc'];
+type Setup = 'regular' | 'analog' | 'analog-aot' | 'angular-build' | 'angular-build-jit' | 'oxc' | 'swc';
+const SETUPS: readonly Setup[] = ['regular', 'analog', 'analog-aot', 'angular-build', 'angular-build-jit', 'oxc', 'swc'];
 const setup = (process.env.CCT_SETUP ?? 'analog') as Setup;
 if (!SETUPS.includes(setup)) {
   throw new Error(`CCT_SETUP must be one of ${SETUPS.join(', ')} (got "${setup}")`);
@@ -22,7 +32,7 @@ if (!SETUPS.includes(setup)) {
 
 const projectRoot = __dirname;
 const specPattern = 'src/**/*.cy.ts';
-const supportFile = 'cypress/support/component.ts';
+const supportFile = setup === 'swc' ? 'cypress/support/component-swc.ts' : 'cypress/support/component.ts';
 const tsconfig = path.join(projectRoot, 'cypress/tsconfig.json');
 const eventsFile = process.env.BENCH_EVENTS;
 const record = (event: string, data: Record<string, unknown> = {}): void => {
@@ -35,7 +45,7 @@ if (setup === 'regular' && process.env.NO_IMPORT_META_SHIM !== '1') {
   installTsxImportMetaShim();
 }
 
-// Shared by analog and oxc: only the Angular plugin differs.
+// Shared by every Vite setup (analog*, angular-build*, oxc): only the Angular plugin differs.
 const createViteConfig = async () => {
   const { default: tsconfigPaths } = await import('vite-tsconfig-paths');
   const angularPlugins = await getAngularVitePlugins();
@@ -71,6 +81,8 @@ const createViteConfig = async () => {
         '@angular/cdk/dialog',
         'rxjs',
         'rxjs/operators',
+        // swc only: its support file imports reflect-metadata (CJS/UMD, so it must be pre-bundled).
+        ...(setup === 'swc' ? ['reflect-metadata'] : []),
       ],
     },
     plugins: [tsconfigPaths({ root: projectRoot, projects: [path.join(projectRoot, 'tsconfig.json')] }), ...angularPlugins, benchVitePlugin()],
@@ -78,6 +90,11 @@ const createViteConfig = async () => {
 };
 
 const getAngularVitePlugins = async () => {
+  if (setup === 'swc') {
+    const { default: swc } = await import('unplugin-swc');
+    const { swcAngularUnpluginOptions } = await import('@jscutlery/swc-angular');
+    return [swc.vite(swcAngularUnpluginOptions())];
+  }
   if (setup === 'oxc') {
     const { angular } = await import('@oxc-angular/vite');
     const [major, minor, patch] = JSON.parse(
@@ -94,6 +111,9 @@ const getAngularVitePlugins = async () => {
     });
   }
   const { default: angular } = await import('@analogjs/vite-plugin-angular');
+  if (setup === 'angular-build' || setup === 'angular-build-jit') {
+    return angular({ jit: setup === 'angular-build-jit', tsconfig, experimental: { useAngularCompilationAPI: true } });
+  }
   return angular({ jit: setup === 'analog', tsconfig });
 };
 

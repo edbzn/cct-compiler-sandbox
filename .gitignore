@@ -10,3 +10,4 @@ cypress/downloads/
 results/logs/
 src/scale/specs/
 .tmp/
+.swc/

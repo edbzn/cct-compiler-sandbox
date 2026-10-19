@@ -14,11 +14,16 @@
 | vite | 7.3.6 | esbuild 0.28.2, rollup 4.64.10 |
 | @analogjs/vite-plugin-angular | 2.8.0 | |
 | @oxc-angular/vite | 0.0.41 | native binding @oxc-angular/binding-linux-x64-gnu 0.0.41 |
+| @angular/build | 22.2.0 | direct devDependency for the `angular-build*` setups (same copy build-angular uses) |
+| @jscutlery/swc-angular / @jscutlery/swc-angular-plugin | 0.22.0 / 0.22.0 | `swc` setup (latest 0.22.x) |
+| @swc/core | 1.15.8 | the preset's peer is `~1.15.0` |
+| unplugin-swc | 2.0.0 | |
+| reflect-metadata | 0.2.2 | `swc` support file only |
 | vite-tsconfig-paths | 4.3.2 | |
 | sass | 1.97.3 | |
 | rxjs / tslib | 7.8.1 / 2.6.2 | |
 | pnpm / node | 12.5.1 / 24.18.1 | |
 
-Two packages were added beyond the requested list: `@angular-devkit/core` (Cypress's webpack handler resolves it
+Packages added beyond the requested list: `@angular-devkit/core` (Cypress's webpack handler resolves it
 from the project root) and `sandbox-ui-lib` (local `file:` package: a partial-compiled library built with
 `ngc` `compilationMode: partial`, the same `ɵɵngDeclare*` output ng-packagr publishes).
