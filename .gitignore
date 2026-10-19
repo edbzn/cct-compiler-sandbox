@@ -1,0 +1,12 @@
+node_modules/
+.angular/
+.cypress-vite/
+dist/
+!packages/ui-lib/dist/
+src/scale/generated/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+results/logs/
+src/scale/specs/
+.tmp/

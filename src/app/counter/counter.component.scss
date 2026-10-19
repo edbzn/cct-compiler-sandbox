@@ -1,0 +1,9 @@
+$accent: rgb(0, 128, 0);
+$warn: rgb(200, 0, 0);
+
+.counter {
+  border: 1px solid $accent;
+  padding: 4px;
+  [data-cy='value'] { color: $accent; }
+  &--max [data-cy='value'] { color: $warn; }
+}

@@ -1,0 +1,8 @@
+<section class="counter" [class.counter--max]="atMax()">
+  <h2 data-cy="label">{{ label() }}</h2>
+  <p data-cy="value">{{ value() }}</p>
+  <p data-cy="doubled">doubled: {{ doubled() }}</p>
+  <p data-cy="clicks">clicks: {{ clicks() }}</p>
+  <button type="button" data-cy="increment" [disabled]="atMax()" (click)="increment()">+{{ step() }}</button>
+  <button type="button" data-cy="reset" (click)="reset()">reset</button>
+</section>

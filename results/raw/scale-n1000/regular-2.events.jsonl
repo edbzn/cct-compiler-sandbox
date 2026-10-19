@@ -1,0 +1,17 @@
+{"event":"bench:spawn","t":1792425888390,"setup":"regular","pass":"scale-n1000","run":2}
+{"event":"config:loaded","t":1792425889177,"setup":"regular"}
+{"event":"before:run","t":1792425891891}
+{"event":"before:spec","t":1792425892732,"spec":"src/scale/specs/scale-0.cy.ts"}
+{"event":"webpack:done","t":1792425897867,"startTime":1792425890123,"endTime":1792425897867,"errors":false,"modules":1317}
+{"event":"webpack:done","t":1792425898119,"startTime":1792425897946,"endTime":1792425898119,"errors":false,"modules":1312}
+{"event":"spec:firstTest","t":1792425899083,"spec":"src/scale/specs/scale-0.cy.ts"}
+{"event":"after:spec","t":1792425899933,"spec":"src/scale/specs/scale-0.cy.ts","stats":{"duration":859,"endedAt":"2026-10-19T16:04:59.931Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:04:59.072Z","suites":1,"tests":2},"tests":[{"title":"scale fixture root 0 (340 generated components) > renders every generated component in the chains","state":"passed","duration":689},{"title":"scale fixture root 0 (340 generated components) > bubbles outputs up a chain","state":"passed","duration":165}]}
+{"event":"before:spec","t":1792425900582,"spec":"src/scale/specs/scale-1.cy.ts"}
+{"event":"webpack:done","t":1792425903161,"startTime":1792425899963,"endTime":1792425903160,"errors":false,"modules":1312}
+{"event":"spec:firstTest","t":1792425904085,"spec":"src/scale/specs/scale-1.cy.ts"}
+{"event":"after:spec","t":1792425904897,"spec":"src/scale/specs/scale-1.cy.ts","stats":{"duration":819,"endedAt":"2026-10-19T16:05:04.896Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:05:04.077Z","suites":1,"tests":2},"tests":[{"title":"scale fixture root 1 (340 generated components) > renders every generated component in the chains","state":"passed","duration":650},{"title":"scale fixture root 1 (340 generated components) > bubbles outputs up a chain","state":"passed","duration":164}]}
+{"event":"before:spec","t":1792425905454,"spec":"src/scale/specs/scale-2.cy.ts"}
+{"event":"webpack:done","t":1792425907588,"startTime":1792425904925,"endTime":1792425907588,"errors":false,"modules":1252}
+{"event":"spec:firstTest","t":1792425908529,"spec":"src/scale/specs/scale-2.cy.ts"}
+{"event":"after:spec","t":1792425909335,"spec":"src/scale/specs/scale-2.cy.ts","stats":{"duration":813,"endedAt":"2026-10-19T16:05:09.333Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:05:08.520Z","suites":1,"tests":2},"tests":[{"title":"scale fixture root 2 (320 generated components) > renders every generated component in the chains","state":"passed","duration":647},{"title":"scale fixture root 2 (320 generated components) > bubbles outputs up a chain","state":"passed","duration":162}]}
+{"event":"after:run","t":1792425909339,"totalTests":6,"totalPassed":6,"totalFailed":0,"totalPending":0,"totalSkipped":0,"totalDuration":2491}

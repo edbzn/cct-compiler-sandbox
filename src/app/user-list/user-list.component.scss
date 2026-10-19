@@ -1,0 +1,3 @@
+@use 'sass:color';
+$base: rgb(200, 0, 0);
+.error { color: color.adjust($base, $lightness: 0%); }

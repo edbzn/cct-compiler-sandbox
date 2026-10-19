@@ -1,0 +1,29 @@
+<div class="flow">
+  @switch (status()) {
+    @case ('loading') { <p data-cy="status">Loading…</p> }
+    @case ('done') { <p data-cy="status">All done</p> }
+    @case ('error') { <p data-cy="status" class="error">Something failed</p> }
+    @default { <p data-cy="status">Idle</p> }
+  }
+
+  <label><input type="checkbox" data-cy="toggle-done" [checked]="showDone()" (change)="showDone.set(!showDone())" /> show done</label>
+
+  @if (visible().length > 0) {
+    <ul data-cy="tasks">
+      @for (task of visible(); track task.id; let i = $index, last = $last) {
+        <li [class.done]="task.done" [attr.data-index]="i" data-cy="task">
+          {{ i + 1 }}. {{ task.title }} @if (last) { <span data-cy="last">(last)</span> }
+        </li>
+      }
+    </ul>
+  } @else {
+    <p data-cy="empty">No tasks</p>
+  }
+
+  <button type="button" data-cy="load-panel" (click)="loadPanel.set(true)">load panel</button>
+  @defer (when loadPanel()) {
+    <sb-deferred-panel />
+  } @placeholder {
+    <p data-cy="placeholder">panel not loaded</p>
+  }
+</div>

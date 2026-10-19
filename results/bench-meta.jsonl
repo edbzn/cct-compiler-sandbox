@@ -1,0 +1,2 @@
+{"event":"bench:start","at":"2026-10-19T15:53:12.609Z","setups":["regular","analog","analog-aot","oxc"],"runs":3,"passes":["all","scale","bugs"],"scaleN":300,"node":"v24.18.1","cpus":32,"memGb":59}
+{"event":"bench:start","at":"2026-10-19T16:03:13.391Z","setups":["regular","analog","analog-aot","oxc"],"runs":3,"passes":["scale"],"scaleN":1000,"label":"n1000","node":"v24.18.1","cpus":32,"memGb":59}

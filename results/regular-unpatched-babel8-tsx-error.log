@@ -1,0 +1,60 @@
+Warning: The allowCypressEnv configuration option is enabled. This allows any browser code to read values from Cypress.env(). This is insecure and will be removed in a future major version.
+
+1. Replace Cypress.env() calls with cy.env() (for sensitive values) or Cypress.expose() (for public configuration)
+2. Set allowCypressEnv: false in your Cypress configuration to disable Cypress.env()
+
+Learn more: https://on.cypress.io/cypress-env-migration
+
+We detected that you have versions of dependencies that are not officially supported:
+
+ - `@angular/platform-browser-dynamic`. Expected ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0, found 22.2.0.
+
+If you're experiencing problems, ensure your dependencies are on a supported version and restart Cypress.
+
+
+================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        15.17.0                                                                        │
+  │ Browser:        Electron 138 (headless)                                                        │
+  │ Node Version:   v24.18.1 (/usr/local/bin/node)                                                 │
+  │ Specs:          1 found (counter.cy.ts)                                                        │
+  │ Searched:       src/app/counter/counter.cy.ts                                                  │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+ERROR in ../../.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/browser.js
+Module build failed (from ./node_modules/.pnpm/@angular-devkit+build-angular@22.2.0_@angular+compiler-cli@22.2.0_@angular+compiler@22._012e923914d2e2586bd0d760a624b2fc/node_modules/@angular-devkit/build-angular/src/tools/babel/webpack-loader.js):
+TypeError [ERR_INVALID_ARG_VALUE]: [BABEL] /home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/browser.js: The argument 'filename' must be a file URL object, file URL string, or absolute path string. Received undefined (While processing: "base$0")
+    at createRequire (node:internal/modules/cjs/loader:2084:11)
+    at path (/home/edouard/work/cct-compiler-sandbox/node_modules/.pnpm/@babel+helper-define-polyfill-provider@1.0.0_@babel+core@8.0.5/node_modules/@babel/helper-define-polyfill-provider/lib/index.node.js:730:19)
+    at Object.<anonymous> (/home/edouard/work/cct-compiler-sandbox/node_modules/.pnpm/@babel+helper-define-polyfill-provider@1.0.0_@babel+core@8.0.5/node_modules/@babel/helper-define-polyfill-provider/lib/index.node.js:1093:10)
+    at Module._compile (node:internal/modules/cjs/loader:1871:14)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at Object.transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at node:internal/modules/cjs/loader:1396:12
+    at module_1.default._load (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:96:16)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1617:12)
+    at require (node:internal/modules/helpers:153:16)
+    at stable (/home/edouard/work/cct-compiler-sandbox/node_modules/.pnpm/babel-plugin-polyfill-corejs3@1.0.0_@babel+core@8.0.5/node_modules/babel-plugin-polyfill-corejs3/lib/index.js:5:28)
+    at Object.<anonymous> (/home/edouard/work/cct-compiler-sandbox/node_modules/.pnpm/babel-plugin-polyfill-corejs3@1.0.0_@babel+core@8.0.5/node_modules/babel-plugin-polyfill-corejs3/lib/index.js:848:2)
+    at Module._compile (node:internal/modules/cjs/loader:1871:14)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at Object.transformer (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:2605)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at node:internal/modules/cjs/loader:1396:12
+    at module_1.default._load (/home/edouard/.cache/Cypress/15.17.0/Cypress/resources/app/node_modules/@packages/server/node_modules/@cypress/webpack-dev-server/dist/helpers/sourceRelativeWebpackModules.js:96:16)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1617:12)
+    at require (node:internal/modules/helpers:153:16)

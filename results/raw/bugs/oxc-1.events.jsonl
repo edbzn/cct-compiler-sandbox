@@ -1,0 +1,14 @@
+{"event":"bench:spawn","t":1792425758867,"setup":"oxc","pass":"bugs","run":1}
+{"event":"config:loaded","t":1792425759654,"setup":"oxc"}
+{"event":"vite:configureServer","t":1792425759962}
+{"event":"vite:listening","t":1792425760128}
+{"event":"vite:firstTransform","t":1792425760134}
+{"event":"before:run","t":1792425760766}
+{"event":"before:spec","t":1792425761584,"spec":"src/known-oxc-bugs/library-safe-url.cy.ts"}
+{"event":"spec:firstTest","t":1792425762020,"spec":"src/known-oxc-bugs/library-safe-url.cy.ts"}
+{"event":"after:spec","t":1792425772083,"spec":"src/known-oxc-bugs/library-safe-url.cy.ts","stats":{"duration":10069,"endedAt":"2026-10-19T16:02:52.080Z","failures":1,"passes":0,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:02:42.011Z","suites":1,"tests":1},"tests":[{"title":"known-oxc-bugs: SafeUrl bound to a library img [src] (#588) > unwraps the SafeUrl and loads the image","state":"failed","duration":10050,"error":"AssertionError: Timed out retrying after 10000ms: expected '<img>' to have attribute 'src' with the value 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==', but the value was 'SafeValue must use [property]=binding: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg== (see https://angular.dev/best-practices/security#preventing-cross-site-scripting-xss)'"}]}
+{"event":"before:spec","t":1792425772670,"spec":"src/known-oxc-bugs/safe-navigation-event.cy.ts"}
+{"event":"spec:firstTest","t":1792425773036,"spec":"src/known-oxc-bugs/safe-navigation-event.cy.ts"}
+{"event":"after:spec","t":1792425793246,"spec":"src/known-oxc-bugs/safe-navigation-event.cy.ts","stats":{"duration":20217,"endedAt":"2026-10-19T16:03:13.244Z","failures":2,"passes":0,"pending":0,"skipped":0,"startedAt":"2026-10-19T16:02:53.027Z","suites":1,"tests":2},"tests":[{"title":"known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @for item value to the handler","state":"failed","duration":10110,"error":"AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '2', but the text was 'null'"},{"title":"known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @if-as alias value to the handler","state":"failed","duration":10086,"error":"AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '7', but the text was 'null'"}]}
+{"event":"after:run","t":1792425793252,"totalTests":3,"totalPassed":0,"totalFailed":3,"totalPending":0,"totalSkipped":0,"totalDuration":30286}
+{"event":"vite:buildEnd","t":1792425793267,"transforms":34}

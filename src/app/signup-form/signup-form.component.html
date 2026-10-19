@@ -1,0 +1,19 @@
+<form [formGroup]="form" (ngSubmit)="submit()" data-cy="form">
+  <input formControlName="email" data-cy="email" placeholder="email" />
+  @if (form.controls.email.touched && form.controls.email.hasError('email')) {
+    <p class="error" data-cy="email-error">Invalid email</p>
+  }
+  <input formControlName="password" type="password" data-cy="password" />
+  @if (form.controls.password.touched && form.controls.password.hasError('minlength')) {
+    <p class="error" data-cy="password-error">Too short</p>
+  }
+  <input formControlName="confirm" type="password" data-cy="confirm" />
+  @if (form.touched && form.hasError('mismatch')) {
+    <p class="error" data-cy="mismatch">Passwords differ</p>
+  }
+  <select formControlName="plan" data-cy="plan">
+    <option value="free">Free</option>
+    <option value="pro">Pro</option>
+  </select>
+  <button type="submit" data-cy="submit">Sign up</button>
+</form>

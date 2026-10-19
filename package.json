@@ -1,0 +1,42 @@
+{
+  "name": "cct-compiler-sandbox",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "gen:scale": "node scripts/generate-scale.mjs",
+    "build:ui-lib": "node scripts/build-ui-lib.mjs",
+    "cct": "cypress run --component",
+    "bench": "node scripts/bench.mjs"
+  },
+  "dependencies": {
+    "@angular/animations": "22.2.0",
+    "@angular/cdk": "22.2.0",
+    "@angular/common": "22.2.0",
+    "@angular/compiler": "22.2.0",
+    "@angular/core": "22.2.0",
+    "@angular/forms": "22.2.0",
+    "@angular/platform-browser": "22.2.0",
+    "@angular/platform-browser-dynamic": "22.2.0",
+    "@angular/router": "22.2.0",
+    "rxjs": "7.8.1",
+    "sandbox-ui-lib": "file:./packages/ui-lib/dist",
+    "tslib": "2.6.2",
+    "zone.js": "0.16.3"
+  },
+  "devDependencies": {
+    "@analogjs/vite-plugin-angular": "2.8.0",
+    "@angular-devkit/build-angular": "22.2.0",
+    "@angular-devkit/core": "22.2.0",
+    "@angular/cli": "22.2.0",
+    "@angular/compiler-cli": "22.2.0",
+    "@cypress/angular": "5.0.0",
+    "@oxc-angular/vite": "0.0.41",
+    "@types/node": "22.5.5",
+    "cypress": "15.17.0",
+    "sass": "1.97.3",
+    "typescript": "6.0.3",
+    "vite": "7.3.6",
+    "vite-tsconfig-paths": "4.3.2"
+  }
+}

@@ -1,0 +1,15 @@
+<input data-cy="search" #search (keyup.enter)="load(search.value)" placeholder="search" />
+@if (loading()) {
+  <p data-cy="loading">loading</p>
+}
+@if (error(); as message) {
+  <p data-cy="error" class="error">{{ message }}</p>
+}
+<ul>
+  @for (user of items(); track user.id) {
+    <li data-cy="user">
+      <span data-cy="user-name">{{ user.name }}</span> &lt;{{ user.email }}&gt;
+      <button type="button" data-cy="remove" (click)="remove(user)">remove</button>
+    </li>
+  }
+</ul>

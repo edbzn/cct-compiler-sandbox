@@ -1,0 +1,3179 @@
+{
+  "all": {
+    "regular": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 34.179,
+        "min": 33.841,
+        "max": 34.185,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 3.108,
+        "min": 3.054,
+        "max": 3.618,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 7.274,
+        "min": 7.272,
+        "max": 7.39,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 4.218,
+        "min": 3.656,
+        "max": 4.282,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 25.457,
+        "min": 24.58,
+        "max": 25.467,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 5.549,
+        "min": 5.545,
+        "max": 5.574,
+        "n": 3
+      },
+      "webpack_compile_total_s": {
+        "median": 10.758,
+        "min": 10.671,
+        "max": 10.789,
+        "n": 3
+      },
+      "webpack_first_compile_s": {
+        "median": 4.615,
+        "min": 4.608,
+        "max": 4.638,
+        "n": 3
+      },
+      "peak_rss_mb": {
+        "median": 4007,
+        "min": 3869,
+        "max": 4221,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 3485,
+        "min": 3449,
+        "max": 3626,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/app/card/card.cy.ts": {
+          "load_s": {
+            "median": 4.218,
+            "min": 3.656,
+            "max": 4.282,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.074,
+            "min": 0.073,
+            "max": 0.074,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 4.287,
+            "min": 3.723,
+            "max": 4.35,
+            "n": 3
+          }
+        },
+        "src/app/control-flow/control-flow.cy.ts": {
+          "load_s": {
+            "median": 1.348,
+            "min": 1.346,
+            "max": 1.368,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.277,
+            "min": 0.269,
+            "max": 0.288,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.657,
+            "min": 1.614,
+            "max": 1.661,
+            "n": 3
+          }
+        },
+        "src/app/counter/counter.cy.ts": {
+          "load_s": {
+            "median": 1.356,
+            "min": 1.322,
+            "max": 1.371,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.599,
+            "min": 0.588,
+            "max": 0.601,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.961,
+            "min": 1.916,
+            "max": 1.979,
+            "n": 3
+          }
+        },
+        "src/app/dialog/dialog.cy.ts": {
+          "load_s": {
+            "median": 1.524,
+            "min": 1.5,
+            "max": 1.591,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.517,
+            "min": 0.516,
+            "max": 0.52,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.046,
+            "min": 2.023,
+            "max": 2.113,
+            "n": 3
+          }
+        },
+        "src/app/greeting/greeting.cy.ts": {
+          "load_s": {
+            "median": 1.084,
+            "min": 1.046,
+            "max": 1.264,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.075,
+            "min": 0.074,
+            "max": 0.076,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.155,
+            "min": 1.119,
+            "max": 1.336,
+            "n": 3
+          }
+        },
+        "src/app/encapsulation/encapsulation.cy.ts": {
+          "load_s": {
+            "median": 1.751,
+            "min": 1.299,
+            "max": 1.779,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.073,
+            "min": 0.071,
+            "max": 0.076,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.82,
+            "min": 1.369,
+            "max": 1.85,
+            "n": 3
+          }
+        },
+        "src/app/lib-usage/lib-usage.cy.ts": {
+          "load_s": {
+            "median": 1.464,
+            "min": 1.285,
+            "max": 1.505,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.058,
+            "min": 0.056,
+            "max": 0.063,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.523,
+            "min": 1.34,
+            "max": 1.56,
+            "n": 3
+          }
+        },
+        "src/app/highlight/highlight.cy.ts": {
+          "load_s": {
+            "median": 1.56,
+            "min": 1.324,
+            "max": 1.726,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.385,
+            "min": 0.383,
+            "max": 0.395,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.956,
+            "min": 1.708,
+            "max": 2.11,
+            "n": 3
+          }
+        },
+        "src/app/pipes/pipes.cy.ts": {
+          "load_s": {
+            "median": 1.516,
+            "min": 1.305,
+            "max": 1.549,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.059,
+            "min": 0.059,
+            "max": 0.061,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.571,
+            "min": 1.361,
+            "max": 1.603,
+            "n": 3
+          }
+        },
+        "src/app/router/router.cy.ts": {
+          "load_s": {
+            "median": 1.532,
+            "min": 1.523,
+            "max": 1.622,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.225,
+            "min": 0.224,
+            "max": 0.225,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.752,
+            "min": 1.743,
+            "max": 1.842,
+            "n": 3
+          }
+        },
+        "src/app/signup-form/signup-form.cy.ts": {
+          "load_s": {
+            "median": 1.321,
+            "min": 1.319,
+            "max": 1.335,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 1.652,
+            "min": 1.648,
+            "max": 1.655,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.976,
+            "min": 2.968,
+            "max": 2.987,
+            "n": 3
+          }
+        },
+        "src/app/user-list/user-list.cy.ts": {
+          "load_s": {
+            "median": 1.357,
+            "min": 1.352,
+            "max": 1.364,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.367,
+            "min": 0.366,
+            "max": 0.379,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.73,
+            "min": 1.725,
+            "max": 1.735,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.836,
+            "min": 1.798,
+            "max": 1.948,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.395,
+            "min": 0.387,
+            "max": 0.416,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.229,
+            "min": 2.181,
+            "max": 2.36,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.794,
+            "min": 1.785,
+            "max": 1.862,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.394,
+            "min": 0.385,
+            "max": 0.404,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.197,
+            "min": 2.179,
+            "max": 2.255,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.809,
+            "min": 1.783,
+            "max": 1.825,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.394,
+            "min": 0.391,
+            "max": 0.401,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.196,
+            "min": 2.173,
+            "max": 2.221,
+            "n": 3
+          }
+        }
+      }
+    },
+    "analog": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 29.634,
+        "min": 29.621,
+        "max": 29.678,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 4.586,
+        "min": 4.523,
+        "max": 4.618,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 5.79,
+        "min": 5.737,
+        "max": 5.815,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.204,
+        "min": 1.197,
+        "max": 1.214,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 19.5,
+        "min": 19.479,
+        "max": 19.546,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 5.492,
+        "min": 5.48,
+        "max": 5.493,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2535,
+        "min": 2534,
+        "max": 2536,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2078,
+        "min": 2076,
+        "max": 2100,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/app/card/card.cy.ts": {
+          "load_s": {
+            "median": 1.204,
+            "min": 1.197,
+            "max": 1.214,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.074,
+            "min": 0.071,
+            "max": 0.074,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.273,
+            "min": 1.267,
+            "max": 1.281,
+            "n": 3
+          }
+        },
+        "src/app/control-flow/control-flow.cy.ts": {
+          "load_s": {
+            "median": 1.46,
+            "min": 1.443,
+            "max": 1.471,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.261,
+            "min": 0.259,
+            "max": 0.267,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.716,
+            "min": 1.707,
+            "max": 1.732,
+            "n": 3
+          }
+        },
+        "src/app/counter/counter.cy.ts": {
+          "load_s": {
+            "median": 1.289,
+            "min": 1.288,
+            "max": 1.309,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.591,
+            "min": 0.591,
+            "max": 0.591,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.887,
+            "min": 1.885,
+            "max": 1.906,
+            "n": 3
+          }
+        },
+        "src/app/dialog/dialog.cy.ts": {
+          "load_s": {
+            "median": 1.021,
+            "min": 0.993,
+            "max": 1.499,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.516,
+            "min": 0.515,
+            "max": 0.518,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.542,
+            "min": 1.514,
+            "max": 2.017,
+            "n": 3
+          }
+        },
+        "src/app/greeting/greeting.cy.ts": {
+          "load_s": {
+            "median": 1.185,
+            "min": 0.998,
+            "max": 1.185,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.076,
+            "min": 0.075,
+            "max": 0.076,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.258,
+            "min": 1.072,
+            "max": 1.261,
+            "n": 3
+          }
+        },
+        "src/app/encapsulation/encapsulation.cy.ts": {
+          "load_s": {
+            "median": 0.989,
+            "min": 0.961,
+            "max": 1.467,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.076,
+            "min": 0.073,
+            "max": 0.079,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.066,
+            "min": 1.034,
+            "max": 1.537,
+            "n": 3
+          }
+        },
+        "src/app/highlight/highlight.cy.ts": {
+          "load_s": {
+            "median": 1.473,
+            "min": 0.976,
+            "max": 1.474,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.383,
+            "min": 0.382,
+            "max": 0.383,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.855,
+            "min": 1.359,
+            "max": 1.858,
+            "n": 3
+          }
+        },
+        "src/app/lib-usage/lib-usage.cy.ts": {
+          "load_s": {
+            "median": 1.459,
+            "min": 1.196,
+            "max": 1.518,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.048,
+            "min": 0.047,
+            "max": 0.05,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.503,
+            "min": 1.241,
+            "max": 1.562,
+            "n": 3
+          }
+        },
+        "src/app/pipes/pipes.cy.ts": {
+          "load_s": {
+            "median": 1.504,
+            "min": 1.496,
+            "max": 1.509,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.059,
+            "min": 0.058,
+            "max": 0.061,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.557,
+            "min": 1.553,
+            "max": 1.565,
+            "n": 3
+          }
+        },
+        "src/app/router/router.cy.ts": {
+          "load_s": {
+            "median": 1.52,
+            "min": 1.506,
+            "max": 1.532,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.218,
+            "min": 0.212,
+            "max": 0.22,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.733,
+            "min": 1.716,
+            "max": 1.747,
+            "n": 3
+          }
+        },
+        "src/app/signup-form/signup-form.cy.ts": {
+          "load_s": {
+            "median": 1.319,
+            "min": 1.315,
+            "max": 1.32,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 1.652,
+            "min": 1.651,
+            "max": 1.659,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.972,
+            "min": 2.966,
+            "max": 2.978,
+            "n": 3
+          }
+        },
+        "src/app/user-list/user-list.cy.ts": {
+          "load_s": {
+            "median": 0.9,
+            "min": 0.883,
+            "max": 0.916,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.363,
+            "min": 0.361,
+            "max": 0.364,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.261,
+            "min": 1.246,
+            "max": 1.281,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.597,
+            "min": 1.586,
+            "max": 1.611,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.393,
+            "min": 0.389,
+            "max": 0.395,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.977,
+            "min": 1.976,
+            "max": 2.001,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.3,
+            "min": 1.293,
+            "max": 1.305,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.392,
+            "min": 0.389,
+            "max": 0.392,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.689,
+            "min": 1.675,
+            "max": 1.691,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.271,
+            "min": 1.259,
+            "max": 1.314,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.387,
+            "min": 0.385,
+            "max": 0.389,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.651,
+            "min": 1.641,
+            "max": 1.696,
+            "n": 3
+          }
+        }
+      }
+    },
+    "analog-aot": {
+      "runs": 3,
+      "exitCodes": [
+        2,
+        2,
+        2
+      ],
+      "wall_s": {
+        "median": 49.197,
+        "min": 49.191,
+        "max": 49.279,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 5.121,
+        "min": 5.078,
+        "max": 5.182,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 6.265,
+        "min": 6.209,
+        "max": 6.36,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.144,
+        "min": 1.131,
+        "max": 1.178,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 18.924,
+        "min": 18.857,
+        "max": 19.005,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 24.747,
+        "min": 24.739,
+        "max": 24.758,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2685,
+        "min": 2585,
+        "max": 2760,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2185,
+        "min": 2169,
+        "max": 2295,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 43,
+          "passed": 41,
+          "failed": 2,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 41,
+          "failed": 2,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 41,
+          "failed": 2,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [
+        "src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T15:54:30.608Z'",
+        "src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces the template — AssertionError: Timed out retrying after 10000ms: Expected to find element: `[data-cy=override]`, but never found it.",
+        "src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T15:56:17.927Z'",
+        "src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T15:58:06.791Z'"
+      ],
+      "perSpec": {
+        "src/app/card/card.cy.ts": {
+          "load_s": {
+            "median": 1.144,
+            "min": 1.131,
+            "max": 1.178,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.067,
+            "min": 0.066,
+            "max": 0.072,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.209,
+            "min": 1.194,
+            "max": 1.24,
+            "n": 3
+          }
+        },
+        "src/app/control-flow/control-flow.cy.ts": {
+          "load_s": {
+            "median": 1.453,
+            "min": 1.44,
+            "max": 1.465,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.237,
+            "min": 0.236,
+            "max": 0.24,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.689,
+            "min": 1.68,
+            "max": 1.702,
+            "n": 3
+          }
+        },
+        "src/app/counter/counter.cy.ts": {
+          "load_s": {
+            "median": 1.351,
+            "min": 1.315,
+            "max": 1.491,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.565,
+            "min": 0.563,
+            "max": 0.574,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.928,
+            "min": 1.884,
+            "max": 2.059,
+            "n": 3
+          }
+        },
+        "src/app/dialog/dialog.cy.ts": {
+          "load_s": {
+            "median": 0.99,
+            "min": 0.985,
+            "max": 1.365,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.497,
+            "min": 0.496,
+            "max": 0.499,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.493,
+            "min": 1.487,
+            "max": 1.867,
+            "n": 3
+          }
+        },
+        "src/app/encapsulation/encapsulation.cy.ts": {
+          "load_s": {
+            "median": 1.022,
+            "min": 1.018,
+            "max": 1.023,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.059,
+            "min": 0.055,
+            "max": 0.062,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.078,
+            "min": 1.071,
+            "max": 1.079,
+            "n": 3
+          }
+        },
+        "src/app/greeting/greeting.cy.ts": {
+          "load_s": {
+            "median": 1.507,
+            "min": 1.183,
+            "max": 1.53,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 20.08,
+            "min": 20.072,
+            "max": 20.085,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 21.616,
+            "min": 21.278,
+            "max": 21.633,
+            "n": 3
+          }
+        },
+        "src/app/highlight/highlight.cy.ts": {
+          "load_s": {
+            "median": 0.998,
+            "min": 0.888,
+            "max": 1.464,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.377,
+            "min": 0.376,
+            "max": 0.38,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.374,
+            "min": 1.266,
+            "max": 1.842,
+            "n": 3
+          }
+        },
+        "src/app/lib-usage/lib-usage.cy.ts": {
+          "load_s": {
+            "median": 0.912,
+            "min": 0.896,
+            "max": 1.162,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.047,
+            "min": 0.045,
+            "max": 0.048,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 0.956,
+            "min": 0.939,
+            "max": 1.203,
+            "n": 3
+          }
+        },
+        "src/app/pipes/pipes.cy.ts": {
+          "load_s": {
+            "median": 1.508,
+            "min": 1.184,
+            "max": 1.531,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.046,
+            "min": 0.045,
+            "max": 0.046,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.55,
+            "min": 1.225,
+            "max": 1.572,
+            "n": 3
+          }
+        },
+        "src/app/router/router.cy.ts": {
+          "load_s": {
+            "median": 1.524,
+            "min": 1.507,
+            "max": 1.59,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.205,
+            "min": 0.199,
+            "max": 0.208,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.718,
+            "min": 1.708,
+            "max": 1.79,
+            "n": 3
+          }
+        },
+        "src/app/user-list/user-list.cy.ts": {
+          "load_s": {
+            "median": 0.906,
+            "min": 0.901,
+            "max": 1.331,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.347,
+            "min": 0.346,
+            "max": 0.347,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.257,
+            "min": 1.25,
+            "max": 1.678,
+            "n": 3
+          }
+        },
+        "src/app/signup-form/signup-form.cy.ts": {
+          "load_s": {
+            "median": 1.352,
+            "min": 1.192,
+            "max": 1.362,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 1.626,
+            "min": 1.622,
+            "max": 1.632,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.98,
+            "min": 2.814,
+            "max": 2.995,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.386,
+            "min": 1.065,
+            "max": 1.386,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.199,
+            "min": 0.196,
+            "max": 0.205,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.579,
+            "min": 1.255,
+            "max": 1.587,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.37,
+            "min": 1.346,
+            "max": 1.384,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.203,
+            "min": 0.193,
+            "max": 0.203,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.57,
+            "min": 1.537,
+            "max": 1.581,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.352,
+            "min": 1.346,
+            "max": 1.352,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.193,
+            "min": 0.19,
+            "max": 0.195,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.539,
+            "min": 1.537,
+            "max": 1.541,
+            "n": 3
+          }
+        }
+      }
+    },
+    "oxc": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 27.035,
+        "min": 27.031,
+        "max": 27.109,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 2.32,
+        "min": 2.312,
+        "max": 2.336,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 3.508,
+        "min": 3.493,
+        "max": 3.552,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.181,
+        "min": 1.172,
+        "max": 1.232,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 19.632,
+        "min": 19.606,
+        "max": 19.694,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 4.725,
+        "min": 4.697,
+        "max": 4.725,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2677,
+        "min": 2674,
+        "max": 2683,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2217,
+        "min": 2210,
+        "max": 2233,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 43,
+          "passed": 43,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/app/card/card.cy.ts": {
+          "load_s": {
+            "median": 1.181,
+            "min": 1.172,
+            "max": 1.232,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.059,
+            "min": 0.058,
+            "max": 0.061,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.235,
+            "min": 1.228,
+            "max": 1.29,
+            "n": 3
+          }
+        },
+        "src/app/control-flow/control-flow.cy.ts": {
+          "load_s": {
+            "median": 1.463,
+            "min": 0.967,
+            "max": 1.485,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.241,
+            "min": 0.237,
+            "max": 0.243,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.703,
+            "min": 1.209,
+            "max": 1.725,
+            "n": 3
+          }
+        },
+        "src/app/counter/counter.cy.ts": {
+          "load_s": {
+            "median": 1.326,
+            "min": 1.298,
+            "max": 1.497,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.568,
+            "min": 0.568,
+            "max": 0.576,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.904,
+            "min": 1.873,
+            "max": 2.076,
+            "n": 3
+          }
+        },
+        "src/app/dialog/dialog.cy.ts": {
+          "load_s": {
+            "median": 1.06,
+            "min": 1.025,
+            "max": 1.358,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.495,
+            "min": 0.488,
+            "max": 0.496,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.56,
+            "min": 1.519,
+            "max": 1.859,
+            "n": 3
+          }
+        },
+        "src/app/encapsulation/encapsulation.cy.ts": {
+          "load_s": {
+            "median": 0.99,
+            "min": 0.969,
+            "max": 1.003,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.055,
+            "min": 0.054,
+            "max": 0.057,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.045,
+            "min": 1.022,
+            "max": 1.054,
+            "n": 3
+          }
+        },
+        "src/app/highlight/highlight.cy.ts": {
+          "load_s": {
+            "median": 1.5,
+            "min": 1.498,
+            "max": 1.504,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.373,
+            "min": 0.37,
+            "max": 0.373,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.872,
+            "min": 1.868,
+            "max": 1.876,
+            "n": 3
+          }
+        },
+        "src/app/greeting/greeting.cy.ts": {
+          "load_s": {
+            "median": 1.199,
+            "min": 1.158,
+            "max": 1.482,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.064,
+            "min": 0.063,
+            "max": 0.068,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.259,
+            "min": 1.224,
+            "max": 1.541,
+            "n": 3
+          }
+        },
+        "src/app/lib-usage/lib-usage.cy.ts": {
+          "load_s": {
+            "median": 1.492,
+            "min": 1.219,
+            "max": 1.512,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.051,
+            "min": 0.049,
+            "max": 0.052,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.539,
+            "min": 1.265,
+            "max": 1.557,
+            "n": 3
+          }
+        },
+        "src/app/pipes/pipes.cy.ts": {
+          "load_s": {
+            "median": 1.53,
+            "min": 1.512,
+            "max": 1.532,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.041,
+            "min": 0.04,
+            "max": 0.043,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.566,
+            "min": 1.55,
+            "max": 1.57,
+            "n": 3
+          }
+        },
+        "src/app/router/router.cy.ts": {
+          "load_s": {
+            "median": 1.583,
+            "min": 1.576,
+            "max": 1.584,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.2,
+            "min": 0.199,
+            "max": 0.2,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.779,
+            "min": 1.773,
+            "max": 1.779,
+            "n": 3
+          }
+        },
+        "src/app/user-list/user-list.cy.ts": {
+          "load_s": {
+            "median": 0.905,
+            "min": 0.903,
+            "max": 1.303,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.342,
+            "min": 0.338,
+            "max": 0.343,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.25,
+            "min": 1.246,
+            "max": 1.644,
+            "n": 3
+          }
+        },
+        "src/app/signup-form/signup-form.cy.ts": {
+          "load_s": {
+            "median": 1.343,
+            "min": 1.252,
+            "max": 1.37,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 1.632,
+            "min": 1.626,
+            "max": 1.637,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.974,
+            "min": 2.887,
+            "max": 2.997,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.361,
+            "min": 1.066,
+            "max": 1.4,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.195,
+            "min": 0.195,
+            "max": 0.198,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.554,
+            "min": 1.256,
+            "max": 1.595,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.384,
+            "min": 1.33,
+            "max": 1.384,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.196,
+            "min": 0.196,
+            "max": 0.206,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.577,
+            "min": 1.533,
+            "max": 1.578,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.331,
+            "min": 1.328,
+            "max": 1.365,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.198,
+            "min": 0.197,
+            "max": 0.206,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.532,
+            "min": 1.524,
+            "max": 1.559,
+            "n": 3
+          }
+        }
+      }
+    }
+  },
+  "scale": {
+    "regular": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 13.643,
+        "min": 13.62,
+        "max": 13.751,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 3.624,
+        "min": 3.104,
+        "max": 3.653,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 8.256,
+        "min": 8.158,
+        "max": 8.264,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 4.603,
+        "min": 4.534,
+        "max": 5.16,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 8.848,
+        "min": 8.693,
+        "max": 9.27,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 1.194,
+        "min": 1.192,
+        "max": 1.197,
+        "n": 3
+      },
+      "webpack_compile_total_s": {
+        "median": 8.09,
+        "min": 8.073,
+        "max": 8.171,
+        "n": 3
+      },
+      "webpack_first_compile_s": {
+        "median": 5.524,
+        "min": 5.478,
+        "max": 5.551,
+        "n": 3
+      },
+      "peak_rss_mb": {
+        "median": 3447,
+        "min": 3254,
+        "max": 3490,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 3023,
+        "min": 2899,
+        "max": 3093,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 4.603,
+            "min": 4.534,
+            "max": 5.16,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.404,
+            "min": 0.401,
+            "max": 0.407,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 5.004,
+            "min": 4.933,
+            "max": 5.565,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 2.285,
+            "min": 2.27,
+            "max": 2.388,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.398,
+            "min": 0.395,
+            "max": 0.399,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.676,
+            "min": 2.666,
+            "max": 2.786,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.825,
+            "min": 1.82,
+            "max": 1.926,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.394,
+            "min": 0.39,
+            "max": 0.395,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.212,
+            "min": 2.207,
+            "max": 2.315,
+            "n": 3
+          }
+        }
+      }
+    },
+    "analog": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 9.933,
+        "min": 9.926,
+        "max": 10.051,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 4.361,
+        "min": 4.349,
+        "max": 4.443,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 6.048,
+        "min": 5.978,
+        "max": 6.129,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.686,
+        "min": 1.617,
+        "max": 1.699,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 4.316,
+        "min": 4.31,
+        "max": 4.355,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 1.175,
+        "min": 1.162,
+        "max": 1.177,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2455,
+        "min": 2432,
+        "max": 2671,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2075,
+        "min": 2056,
+        "max": 2082,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.686,
+            "min": 1.617,
+            "max": 1.699,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.398,
+            "min": 0.393,
+            "max": 0.402,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.076,
+            "min": 2.015,
+            "max": 2.091,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.331,
+            "min": 1.308,
+            "max": 1.365,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.386,
+            "min": 0.384,
+            "max": 0.4,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.715,
+            "min": 1.705,
+            "max": 1.745,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.334,
+            "min": 1.303,
+            "max": 1.338,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.383,
+            "min": 0.379,
+            "max": 0.389,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.713,
+            "min": 1.677,
+            "max": 1.718,
+            "n": 3
+          }
+        }
+      }
+    },
+    "analog-aot": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 9.948,
+        "min": 9.928,
+        "max": 10.008,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 4.953,
+        "min": 4.935,
+        "max": 4.988,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 6.305,
+        "min": 6.279,
+        "max": 6.332,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.344,
+        "min": 1.344,
+        "max": 1.352,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 4.039,
+        "min": 4.026,
+        "max": 4.055,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 0.601,
+        "min": 0.589,
+        "max": 0.601,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2558,
+        "min": 2510,
+        "max": 2664,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2183,
+        "min": 2145,
+        "max": 2186,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.344,
+            "min": 1.344,
+            "max": 1.352,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.203,
+            "min": 0.197,
+            "max": 0.206,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.544,
+            "min": 1.543,
+            "max": 1.546,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.321,
+            "min": 1.312,
+            "max": 1.335,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.196,
+            "min": 0.194,
+            "max": 0.198,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.509,
+            "min": 1.504,
+            "max": 1.53,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.37,
+            "min": 1.366,
+            "max": 1.376,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.199,
+            "min": 0.198,
+            "max": 0.2,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.563,
+            "min": 1.559,
+            "max": 1.573,
+            "n": 3
+          }
+        }
+      }
+    },
+    "oxc": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 7.254,
+        "min": 7.245,
+        "max": 7.269,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 2.27,
+        "min": 2.241,
+        "max": 2.274,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 3.653,
+        "min": 3.626,
+        "max": 3.665,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.383,
+        "min": 1.352,
+        "max": 1.424,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 4.023,
+        "min": 4.021,
+        "max": 4.053,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 0.601,
+        "min": 0.6,
+        "max": 0.602,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2511,
+        "min": 2504,
+        "max": 2516,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2133,
+        "min": 2126,
+        "max": 2137,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.383,
+            "min": 1.352,
+            "max": 1.424,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.203,
+            "min": 0.198,
+            "max": 0.204,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.582,
+            "min": 1.547,
+            "max": 1.625,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.301,
+            "min": 1.284,
+            "max": 1.306,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.2,
+            "min": 0.198,
+            "max": 0.201,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.496,
+            "min": 1.478,
+            "max": 1.503,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.345,
+            "min": 1.339,
+            "max": 1.363,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.2,
+            "min": 0.197,
+            "max": 0.202,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.542,
+            "min": 1.531,
+            "max": 1.56,
+            "n": 3
+          }
+        }
+      }
+    }
+  },
+  "scale-n1000": {
+    "regular": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 20.912,
+        "min": 20.857,
+        "max": 21.044,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 3.501,
+        "min": 3.465,
+        "max": 4.066,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 10.546,
+        "min": 10.529,
+        "max": 10.693,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 7.081,
+        "min": 6.463,
+        "max": 7.192,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 14.832,
+        "min": 14.223,
+        "max": 14.976,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 2.48,
+        "min": 2.477,
+        "max": 2.53,
+        "n": 3
+      },
+      "webpack_compile_total_s": {
+        "median": 13.719,
+        "min": 13.644,
+        "max": 13.777,
+        "n": 3
+      },
+      "webpack_first_compile_s": {
+        "median": 7.668,
+        "min": 7.617,
+        "max": 7.744,
+        "n": 3
+      },
+      "peak_rss_mb": {
+        "median": 3927,
+        "min": 3722,
+        "max": 4008,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 3516,
+        "min": 3341,
+        "max": 3558,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 7.081,
+            "min": 6.463,
+            "max": 7.192,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.858,
+            "min": 0.854,
+            "max": 0.867,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 7.936,
+            "min": 7.328,
+            "max": 8.042,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 4.166,
+            "min": 4.152,
+            "max": 4.172,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.818,
+            "min": 0.814,
+            "max": 0.839,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 4.987,
+            "min": 4.964,
+            "max": 5,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 3.594,
+            "min": 3.579,
+            "max": 3.632,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.809,
+            "min": 0.804,
+            "max": 0.824,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 4.417,
+            "min": 4.379,
+            "max": 4.438,
+            "n": 3
+          }
+        }
+      }
+    },
+    "analog": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 15.556,
+        "min": 15.273,
+        "max": 15.614,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 5.773,
+        "min": 5.655,
+        "max": 5.78,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 8.483,
+        "min": 8.373,
+        "max": 8.528,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 2.718,
+        "min": 2.71,
+        "max": 2.748,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 7.26,
+        "min": 7.12,
+        "max": 7.326,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 2.412,
+        "min": 2.408,
+        "max": 2.427,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2600,
+        "min": 2584,
+        "max": 2784,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2223,
+        "min": 2206,
+        "max": 2321,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 2.718,
+            "min": 2.71,
+            "max": 2.748,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.815,
+            "min": 0.808,
+            "max": 0.823,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 3.53,
+            "min": 3.528,
+            "max": 3.554,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 2.33,
+            "min": 2.301,
+            "max": 2.383,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.825,
+            "min": 0.805,
+            "max": 0.834,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 3.151,
+            "min": 3.105,
+            "max": 3.215,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 2.195,
+            "min": 2.101,
+            "max": 2.22,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.779,
+            "min": 0.77,
+            "max": 0.788,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.963,
+            "min": 2.885,
+            "max": 2.998,
+            "n": 3
+          }
+        }
+      }
+    },
+    "analog-aot": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 12.88,
+        "min": 12.865,
+        "max": 12.975,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 7.231,
+        "min": 7.205,
+        "max": 7.28,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 9.013,
+        "min": 8.96,
+        "max": 9.071,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.782,
+        "min": 1.755,
+        "max": 1.791,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 4.615,
+        "min": 4.604,
+        "max": 4.65,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 0.951,
+        "min": 0.948,
+        "max": 0.954,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2695,
+        "min": 2673,
+        "max": 2710,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2318,
+        "min": 2301,
+        "max": 2336,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.782,
+            "min": 1.755,
+            "max": 1.791,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.319,
+            "min": 0.313,
+            "max": 0.339,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.098,
+            "min": 2.091,
+            "max": 2.102,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.482,
+            "min": 1.451,
+            "max": 1.483,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.316,
+            "min": 0.314,
+            "max": 0.331,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.797,
+            "min": 1.764,
+            "max": 1.811,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.376,
+            "min": 1.34,
+            "max": 1.409,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.31,
+            "min": 0.298,
+            "max": 0.313,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.683,
+            "min": 1.652,
+            "max": 1.705,
+            "n": 3
+          }
+        }
+      }
+    },
+    "oxc": {
+      "runs": 3,
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "wall_s": {
+        "median": 8.508,
+        "min": 8.435,
+        "max": 8.531,
+        "n": 3
+      },
+      "before_run_s": {
+        "median": 2.718,
+        "min": 2.714,
+        "max": 2.756,
+        "n": 3
+      },
+      "first_test_s": {
+        "median": 4.538,
+        "min": 4.508,
+        "max": 4.565,
+        "n": 3
+      },
+      "first_spec_load_s": {
+        "median": 1.79,
+        "min": 1.782,
+        "max": 1.851,
+        "n": 3
+      },
+      "load_total_s": {
+        "median": 4.712,
+        "min": 4.596,
+        "max": 4.717,
+        "n": 3
+      },
+      "tests_total_s": {
+        "median": 0.995,
+        "min": 0.99,
+        "max": 0.999,
+        "n": 3
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2779,
+        "min": 2772,
+        "max": 2835,
+        "n": 3
+      },
+      "peak_pss_mb": {
+        "median": 2332,
+        "min": 2274,
+        "max": 2372,
+        "n": 3
+      },
+      "tests": [
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        },
+        {
+          "tests": 6,
+          "passed": 6,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/scale/specs/scale-0.cy.ts": {
+          "load_s": {
+            "median": 1.79,
+            "min": 1.782,
+            "max": 1.851,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.337,
+            "min": 0.328,
+            "max": 0.345,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 2.124,
+            "min": 2.124,
+            "max": 2.177,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-1.cy.ts": {
+          "load_s": {
+            "median": 1.46,
+            "min": 1.441,
+            "max": 1.507,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.336,
+            "min": 0.327,
+            "max": 0.34,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.782,
+            "min": 1.781,
+            "max": 1.839,
+            "n": 3
+          }
+        },
+        "src/scale/specs/scale-2.cy.ts": {
+          "load_s": {
+            "median": 1.42,
+            "min": 1.354,
+            "max": 1.42,
+            "n": 3
+          },
+          "tests_s": {
+            "median": 0.323,
+            "min": 0.322,
+            "max": 0.326,
+            "n": 3
+          },
+          "slot_s": {
+            "median": 1.739,
+            "min": 1.674,
+            "max": 1.741,
+            "n": 3
+          }
+        }
+      }
+    }
+  },
+  "bugs": {
+    "regular": {
+      "runs": 1,
+      "exitCodes": [
+        0
+      ],
+      "wall_s": {
+        "median": 9.128,
+        "min": 9.128,
+        "max": 9.128,
+        "n": 1
+      },
+      "before_run_s": {
+        "median": 3.694,
+        "min": 3.694,
+        "max": 3.694,
+        "n": 1
+      },
+      "first_test_s": {
+        "median": 7.361,
+        "min": 7.361,
+        "max": 7.361,
+        "n": 1
+      },
+      "first_spec_load_s": {
+        "median": 3.667,
+        "min": 3.667,
+        "max": 3.667,
+        "n": 1
+      },
+      "load_total_s": {
+        "median": 5.042,
+        "min": 5.042,
+        "max": 5.042,
+        "n": 1
+      },
+      "tests_total_s": {
+        "median": 0.284,
+        "min": 0.284,
+        "max": 0.284,
+        "n": 1
+      },
+      "webpack_compile_total_s": {
+        "median": 5.008,
+        "min": 5.008,
+        "max": 5.008,
+        "n": 1
+      },
+      "webpack_first_compile_s": {
+        "median": 4.721,
+        "min": 4.721,
+        "max": 4.721,
+        "n": 1
+      },
+      "peak_rss_mb": {
+        "median": 2991,
+        "min": 2991,
+        "max": 2991,
+        "n": 1
+      },
+      "peak_pss_mb": {
+        "median": 2520,
+        "min": 2520,
+        "max": 2520,
+        "n": 1
+      },
+      "tests": [
+        {
+          "tests": 3,
+          "passed": 3,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/known-oxc-bugs/library-safe-url.cy.ts": {
+          "load_s": {
+            "median": 3.667,
+            "min": 3.667,
+            "max": 3.667,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 0.072,
+            "min": 0.072,
+            "max": 0.072,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 3.734,
+            "min": 3.734,
+            "max": 3.734,
+            "n": 1
+          }
+        },
+        "src/known-oxc-bugs/safe-navigation-event.cy.ts": {
+          "load_s": {
+            "median": 1.375,
+            "min": 1.375,
+            "max": 1.375,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 0.212,
+            "min": 0.212,
+            "max": 0.212,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 1.586,
+            "min": 1.586,
+            "max": 1.586,
+            "n": 1
+          }
+        }
+      }
+    },
+    "analog": {
+      "runs": 1,
+      "exitCodes": [
+        0
+      ],
+      "wall_s": {
+        "median": 7.033,
+        "min": 7.033,
+        "max": 7.033,
+        "n": 1
+      },
+      "before_run_s": {
+        "median": 3.597,
+        "min": 3.597,
+        "max": 3.597,
+        "n": 1
+      },
+      "first_test_s": {
+        "median": 4.797,
+        "min": 4.797,
+        "max": 4.797,
+        "n": 1
+      },
+      "first_spec_load_s": {
+        "median": 1.2,
+        "min": 1.2,
+        "max": 1.2,
+        "n": 1
+      },
+      "load_total_s": {
+        "median": 2.63,
+        "min": 2.63,
+        "max": 2.63,
+        "n": 1
+      },
+      "tests_total_s": {
+        "median": 0.261,
+        "min": 0.261,
+        "max": 0.261,
+        "n": 1
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2321,
+        "min": 2321,
+        "max": 2321,
+        "n": 1
+      },
+      "peak_pss_mb": {
+        "median": 1952,
+        "min": 1952,
+        "max": 1952,
+        "n": 1
+      },
+      "tests": [
+        {
+          "tests": 3,
+          "passed": 3,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/known-oxc-bugs/library-safe-url.cy.ts": {
+          "load_s": {
+            "median": 1.2,
+            "min": 1.2,
+            "max": 1.2,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 0.056,
+            "min": 0.056,
+            "max": 0.056,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 1.247,
+            "min": 1.247,
+            "max": 1.247,
+            "n": 1
+          }
+        },
+        "src/known-oxc-bugs/safe-navigation-event.cy.ts": {
+          "load_s": {
+            "median": 1.43,
+            "min": 1.43,
+            "max": 1.43,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 0.205,
+            "min": 0.205,
+            "max": 0.205,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 1.629,
+            "min": 1.629,
+            "max": 1.629,
+            "n": 1
+          }
+        }
+      }
+    },
+    "analog-aot": {
+      "runs": 1,
+      "exitCodes": [
+        0
+      ],
+      "wall_s": {
+        "median": 7.397,
+        "min": 7.397,
+        "max": 7.397,
+        "n": 1
+      },
+      "before_run_s": {
+        "median": 3.931,
+        "min": 3.931,
+        "max": 3.931,
+        "n": 1
+      },
+      "first_test_s": {
+        "median": 5.145,
+        "min": 5.145,
+        "max": 5.145,
+        "n": 1
+      },
+      "first_spec_load_s": {
+        "median": 1.214,
+        "min": 1.214,
+        "max": 1.214,
+        "n": 1
+      },
+      "load_total_s": {
+        "median": 2.665,
+        "min": 2.665,
+        "max": 2.665,
+        "n": 1
+      },
+      "tests_total_s": {
+        "median": 0.244,
+        "min": 0.244,
+        "max": 0.244,
+        "n": 1
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2497,
+        "min": 2497,
+        "max": 2497,
+        "n": 1
+      },
+      "peak_pss_mb": {
+        "median": 2127,
+        "min": 2127,
+        "max": 2127,
+        "n": 1
+      },
+      "tests": [
+        {
+          "tests": 3,
+          "passed": 3,
+          "failed": 0,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [],
+      "perSpec": {
+        "src/known-oxc-bugs/library-safe-url.cy.ts": {
+          "load_s": {
+            "median": 1.214,
+            "min": 1.214,
+            "max": 1.214,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 0.056,
+            "min": 0.056,
+            "max": 0.056,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 1.261,
+            "min": 1.261,
+            "max": 1.261,
+            "n": 1
+          }
+        },
+        "src/known-oxc-bugs/safe-navigation-event.cy.ts": {
+          "load_s": {
+            "median": 1.451,
+            "min": 1.451,
+            "max": 1.451,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 0.188,
+            "min": 0.188,
+            "max": 0.188,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 1.634,
+            "min": 1.634,
+            "max": 1.634,
+            "n": 1
+          }
+        }
+      }
+    },
+    "oxc": {
+      "runs": 1,
+      "exitCodes": [
+        3
+      ],
+      "wall_s": {
+        "median": 34.47,
+        "min": 34.47,
+        "max": 34.47,
+        "n": 1
+      },
+      "before_run_s": {
+        "median": 1.899,
+        "min": 1.899,
+        "max": 1.899,
+        "n": 1
+      },
+      "first_test_s": {
+        "median": 3.153,
+        "min": 3.153,
+        "max": 3.153,
+        "n": 1
+      },
+      "first_spec_load_s": {
+        "median": 1.254,
+        "min": 1.254,
+        "max": 1.254,
+        "n": 1
+      },
+      "load_total_s": {
+        "median": 2.207,
+        "min": 2.207,
+        "max": 2.207,
+        "n": 1
+      },
+      "tests_total_s": {
+        "median": 30.246,
+        "min": 30.246,
+        "max": 30.246,
+        "n": 1
+      },
+      "webpack_compile_total_s": null,
+      "webpack_first_compile_s": null,
+      "peak_rss_mb": {
+        "median": 2054,
+        "min": 2054,
+        "max": 2054,
+        "n": 1
+      },
+      "peak_pss_mb": {
+        "median": 1681,
+        "min": 1681,
+        "max": 1681,
+        "n": 1
+      },
+      "tests": [
+        {
+          "tests": 3,
+          "passed": 0,
+          "failed": 3,
+          "pending": 0,
+          "skipped": 0
+        }
+      ],
+      "failures": [
+        "src/known-oxc-bugs/library-safe-url.cy.ts › known-oxc-bugs: SafeUrl bound to a library img [src] (#588) > unwraps the SafeUrl and loads the image — AssertionError: Timed out retrying after 10000ms: expected '<img>' to have attribute 'src' with the value 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==', but the value was 'SafeValue must use [property]=binding: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg== (see https://angular.dev/best-practices/security#preventing-cross-site-scripting-xss)'",
+        "src/known-oxc-bugs/safe-navigation-event.cy.ts › known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @for item value to the handler — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '2', but the text was 'null'",
+        "src/known-oxc-bugs/safe-navigation-event.cy.ts › known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @if-as alias value to the handler — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '7', but the text was 'null'"
+      ],
+      "perSpec": {
+        "src/known-oxc-bugs/library-safe-url.cy.ts": {
+          "load_s": {
+            "median": 1.254,
+            "min": 1.254,
+            "max": 1.254,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 10.05,
+            "min": 10.05,
+            "max": 10.05,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 11.317,
+            "min": 11.317,
+            "max": 11.317,
+            "n": 1
+          }
+        },
+        "src/known-oxc-bugs/safe-navigation-event.cy.ts": {
+          "load_s": {
+            "median": 0.953,
+            "min": 0.953,
+            "max": 0.953,
+            "n": 1
+          },
+          "tests_s": {
+            "median": 20.196,
+            "min": 20.196,
+            "max": 20.196,
+            "n": 1
+          },
+          "slot_s": {
+            "median": 21.163,
+            "min": 21.163,
+            "max": 21.163,
+            "n": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+packages: []
+allowBuilds:
+  cypress: true
+  esbuild: true
+  '@parcel/watcher': true
+  lmdb: true
+  msgpackr-extract: true
+minimumReleaseAgeExclude:
+  - webpack-dev-server@5.2.7
+overrides:
+  # Workaround for the "regular" (webpack) setup: Angular 22's build-angular depends on
+  # webpack-dev-server 6, but Cypress 15.17 (and 16.1) only accept major 5 and abort with
+  # "Unexpected major version of webpack-dev-server ... saw 6.0.0". Cypress sources wds from
+  # build-angular's directory, so pin build-angular's copy to the last 5.x.
+  '@angular-devkit/build-angular>webpack-dev-server': 5.2.7
