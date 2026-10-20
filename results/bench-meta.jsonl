@@ -1,5 +1,2 @@
-{"event":"bench:start","at":"2026-10-19T15:53:12.609Z","setups":["regular","analog","analog-aot","oxc"],"runs":3,"passes":["all","scale","bugs"],"scaleN":300,"node":"v24.18.1","cpus":32,"memGb":59}
-{"event":"bench:start","at":"2026-10-19T16:03:13.391Z","setups":["regular","analog","analog-aot","oxc"],"runs":3,"passes":["scale"],"scaleN":1000,"label":"n1000","node":"v24.18.1","cpus":32,"memGb":59}
-{"event":"bench:start","at":"2026-10-19T16:24:08.661Z","setups":["angular-build","angular-build-jit","swc"],"runs":3,"passes":["all","scale","bugs"],"scaleN":300,"node":"v24.18.1","cpus":32,"memGb":59}
-{"event":"bench:start","at":"2026-10-19T16:31:19.312Z","setups":["angular-build","angular-build-jit","swc"],"runs":3,"passes":["scale"],"scaleN":1000,"label":"n1000","node":"v24.18.1","cpus":32,"memGb":59}
-{"event":"bench:start","at":"2026-10-19T16:33:27.161Z","setups":["oxc"],"runs":3,"passes":["all"],"scaleN":300,"label":"control","node":"v24.18.1","cpus":32,"memGb":59}
+{"event":"bench:start","at":"2026-10-20T07:53:37.430Z","setups":["regular","analog","analog-aot","analog-fast","angular-build","angular-build-jit","oxc","swc"],"runs":3,"passes":["all","scale","gaps"],"scaleN":300,"node":"v24.18.1","cpus":32,"memGb":59}
+{"event":"bench:start","at":"2026-10-20T08:11:40.361Z","setups":["regular","analog","analog-aot","analog-fast","angular-build","angular-build-jit","oxc","swc"],"runs":3,"passes":["scale"],"scaleN":1000,"label":"n1000","node":"v24.18.1","cpus":32,"memGb":59}

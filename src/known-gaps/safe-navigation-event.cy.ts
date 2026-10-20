@@ -1,6 +1,6 @@
 import { SafeNavigationEventComponent } from './safe-navigation-event.component';
 
-describe('known-oxc-bugs: $safeNavigationMigration in event bindings (#587)', () => {
+describe('known-gaps: OXC $safeNavigationMigration in event bindings (#585)', () => {
   it('passes the @for item value to the handler', () => {
     cy.mount(SafeNavigationEventComponent);
     cy.get('[data-cy=pick]').eq(1).click();

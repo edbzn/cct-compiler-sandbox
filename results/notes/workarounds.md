@@ -33,9 +33,9 @@
 With these in place `regular` uses Cypress's built-in Angular handler unchanged: angular.json `build` options merged
 with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
 
-### analog / analog-aot / angular-build / angular-build-jit / oxc / swc (Vite)
+### analog / analog-aot / analog-fast / angular-build / angular-build-jit / oxc / swc (Vite)
 
-- Same Vite config for all six. Only the Angular plugin differs. It uses a production monorepo's `optimizeDeps`
+- Same Vite config for all seven. Only the Angular plugin differs. It uses a production monorepo's `optimizeDeps`
   (`noDiscovery` plus the Angular include list), `resolve.mainFields: ['module']` and `resolve.dedupe`.
   Three entries were added to the include list: `@angular/platform-browser/testing` (`@cypress/angular` 5 imports it,
   not `platform-browser-dynamic/testing`), and `@angular/cdk/dialog` (used by the dialog spec).
@@ -47,9 +47,13 @@ with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
   Its linker registers a Rolldown `optimizeDeps` plugin, which Vite 7's esbuild optimizer ignores. Pre-bundled
   partial-compiled packages (CDK) therefore get JIT-linked at runtime through `@angular/compiler`, while
   non-pre-bundled `node_modules` packages (the sandbox's `sandbox-ui-lib`) go through its transform-time linker.
-- `analog-aot` (`jit: false`) fails `TestBed.overrideComponent` (2 tests in `greeting.cy.ts`). AOT strips the
-  decorator TestBed needs to recompile the component. This is why a production monorepo using Analog sets `jit: true`. Its timings are
-  still listed for reference.
+- `analog-aot` (`jit: false`) fails `TestBed.overrideComponent` (the 2 tests in `src/known-gaps/override-component.cy.ts`).
+  AOT strips the decorator TestBed needs to recompile the component. This is why a production monorepo using Analog
+  sets `jit: true`.
+- `analog-fast` (`jit: false, fastCompile: true`): no workaround needed. It fails 1 of the 2
+  `TestBed.overrideComponent` tests: overriding providers and the template works, but the recompiled component loses
+  its inputs. `fastCompile` emits `setClassMetadata(…, null, null)`, with no `propDecorators` or `ctorParameters`
+  ([analogjs/analog#2666](https://github.com/analogjs/analog/issues/2666), still in 2.9.0).
 
 - `angular-build` / `angular-build-jit`: no workaround needed. Analog already loads `@angular/build/private`
   (`createAngularCompilation`) itself. `@angular/build@22.2.0` was made a direct, pinned devDependency anyway, so

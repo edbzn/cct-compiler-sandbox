@@ -10,6 +10,8 @@ import { installTsxImportMetaShim } from './cypress/tsx-import-meta-shim';
  *              the webpack-dev-server 5 override (pnpm-workspace.yaml) and installTsxImportMetaShim().
  *   analog     framework angular + bundler vite + @analogjs/vite-plugin-angular { jit: true }
  *   analog-aot same as analog with { jit: false }
+ *   analog-fast same as analog-aot with { fastCompile: true }: Analog's single-pass compiler, one file at a time,
+ *              no TypeScript program and no template type-checking
  *   angular-build      same Vite config + Analog with experimental.useAngularCompilationAPI, { jit: false }:
  *                      compiles through @angular/build's createAngularCompilation (the CLI esbuild builder's AOT
  *                      pipeline). Stand-in for "Cypress + esbuild", which Cypress does not offer for Angular
@@ -23,8 +25,8 @@ import { installTsxImportMetaShim } from './cypress/tsx-import-meta-shim';
  *   oxc        framework angular + bundler vite + @oxc-angular/vite (AOT, emits class metadata)
  * BENCH_EVENTS (optional) is a JSONL file the bench script reads for spec/dev-server timings.
  */
-type Setup = 'regular' | 'analog' | 'analog-aot' | 'angular-build' | 'angular-build-jit' | 'oxc' | 'swc';
-const SETUPS: readonly Setup[] = ['regular', 'analog', 'analog-aot', 'angular-build', 'angular-build-jit', 'oxc', 'swc'];
+type Setup = 'regular' | 'analog' | 'analog-aot' | 'analog-fast' | 'angular-build' | 'angular-build-jit' | 'oxc' | 'swc';
+const SETUPS: readonly Setup[] = ['regular', 'analog', 'analog-aot', 'analog-fast', 'angular-build', 'angular-build-jit', 'oxc', 'swc'];
 const setup = (process.env.CCT_SETUP ?? 'analog') as Setup;
 if (!SETUPS.includes(setup)) {
   throw new Error(`CCT_SETUP must be one of ${SETUPS.join(', ')} (got "${setup}")`);
@@ -113,6 +115,9 @@ const getAngularVitePlugins = async () => {
   const { default: angular } = await import('@analogjs/vite-plugin-angular');
   if (setup === 'angular-build' || setup === 'angular-build-jit') {
     return angular({ jit: setup === 'angular-build-jit', tsconfig, experimental: { useAngularCompilationAPI: true } });
+  }
+  if (setup === 'analog-fast') {
+    return angular({ jit: false, tsconfig, fastCompile: true });
   }
   return angular({ jit: setup === 'analog', tsconfig });
 };

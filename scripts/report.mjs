@@ -13,8 +13,8 @@ const runs = fs
   .filter(Boolean)
   .map((l) => JSON.parse(l));
 
-const SETUP_ORDER = ['regular', 'analog', 'analog-aot', 'angular-build', 'angular-build-jit', 'oxc', 'swc'];
-const PASS_ORDER = ['all', 'scale', 'scale-n1000', 'bugs', 'all-control'];
+const SETUP_ORDER = ['regular', 'analog', 'analog-aot', 'analog-fast', 'angular-build', 'angular-build-jit', 'oxc', 'swc'];
+const PASS_ORDER = ['all', 'scale', 'scale-n1000', 'gaps'];
 const by = (xs, key) => xs.reduce((m, x) => m.set(x[key], [...(m.get(x[key]) ?? []), x]), new Map());
 const median = (xs) => {
   const s = xs.filter((x) => x != null).sort((a, b) => a - b);
@@ -73,7 +73,7 @@ const push = (...xs) => lines.push(...xs);
 push('# CCT compiler comparison: results', '', note('intro'), note('esbuild'));
 
 push('## Pass/fail per setup', '');
-push('| setup | all (hand-written + scale-300) | scale-300 | scale-1000 | known-oxc-bugs |', '|---|---|---|---|---|');
+push('| setup | all (hand-written + scale-300) | scale-300 | scale-1000 | known-gaps |', '|---|---|---|---|---|');
 for (const setup of SETUP_ORDER) {
   const cell = (pass) => {
     const s = summary[pass]?.[setup];
@@ -85,7 +85,7 @@ for (const setup of SETUP_ORDER) {
     const base = same ? `${passed[0]}/${t[0].tests} passed` : `passed ${passed.join('/')} of ${t[0].tests}`;
     return failed.some((f) => f > 0) ? `**${base}, ${same ? failed[0] : failed.join('/')} failed**` : base;
   };
-  push(`| ${setup} | ${cell('all')} | ${cell('scale')} | ${cell('scale-n1000')} | ${cell('bugs')} |`);
+  push(`| ${setup} | ${cell('all')} | ${cell('scale')} | ${cell('scale-n1000')} | ${cell('gaps')} |`);
 }
 push('', 'Pending and skipped were 0 in every run. Failures (all runs, de-duplicated):', '');
 for (const pass of PASS_ORDER) {
@@ -112,32 +112,9 @@ const timingTable = (pass, title) => {
   }
   push('');
 };
-timingTable('all', 'Full suite (hand-written specs + scale fixture of 300 components, bugs excluded)');
+timingTable('all', 'Full suite (hand-written specs + scale fixture of 300 components)');
 timingTable('scale', 'Scale fixture alone, 300 generated components (3 specs)');
 timingTable('scale-n1000', 'Scale fixture alone, 1000 generated components (3 specs)');
-
-const controlTable = () => {
-  const ctl = summary['all-control'];
-  if (!ctl) return;
-  push('## Control: drift between the two benchmark sessions', '', note('control'));
-  push('| setup | metric | session 1 (`all`) | session 2 (`all-control`) | drift |', '|---|---|---|---|---|');
-  for (const setup of Object.keys(ctl)) {
-    const a = summary.all?.[setup];
-    const b = ctl[setup];
-    if (!a) continue;
-    for (const [key, label, digits] of [
-      ['wall_s', 'wall', 1],
-      ['first_test_s', 'to first test', 1],
-      ['load_total_s', 'compile+load', 1],
-      ['tests_total_s', 'test bodies', 2],
-      ['peak_pss_mb', 'peak PSS (MB)', 0],
-    ]) {
-      const drift = a[key] && b[key] ? ((b[key].median / a[key].median - 1) * 100).toFixed(1) + '%' : '–';
-      push(`| ${setup} | ${label} | ${fmt(a[key], digits)} | ${fmt(b[key], digits)} | ${drift} |`);
-    }
-  }
-  push('');
-};
 
 const perSpecTable = (pass, title) => {
   const s = summary[pass];
@@ -158,7 +135,6 @@ const perSpecTable = (pass, title) => {
   }
   push('');
 };
-controlTable();
 perSpecTable('all', 'Per-spec durations, full suite');
 perSpecTable('scale-n1000', 'Per-spec durations, scale fixture with 1000 components');
 

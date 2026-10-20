@@ -5,7 +5,7 @@ export interface Item {
   label: string;
 }
 
-// OXC 0.0.41 bug (upstream voidzero-dev/oxc-angular-compiler#587): `$safeNavigationMigration(x?.y)`
+// OXC 0.0.41 bug (upstream voidzero-dev/oxc-angular-compiler#585, fix in #587): `$safeNavigationMigration(x?.y)`
 // inside an event binding, where `x` is a @for item or an `@if … as` alias, compiles to a read of
 // `ctx.x` (the component) instead of the template-local variable, so the handler receives null.
 @Component({

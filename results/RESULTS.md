@@ -1,6 +1,6 @@
 # CCT compiler comparison: results
 
-Angular 22.2.0 Cypress Component Testing (Cypress 15.17.0) run under seven compiler setups, all with the same
+Angular 22.2.0 Cypress Component Testing (Cypress 15.17.0) run under eight compiler setups, all with the same
 specs and components. Every run is cold: compiler and dev-server caches are deleted first. Runs are strictly sequential.
 
 | setup | dev server | Angular compilation |
@@ -8,6 +8,7 @@ specs and components. Every run is cold: compiler and dev-server caches are dele
 | `regular` | Cypress `framework: 'angular', bundler: 'webpack'`: angular.json + `@angular-devkit/build-angular` webpack config, with Cypress's default `justInTimeCompile` | JIT (Cypress forces `aot: false`), `@ngtools/webpack` + Babel |
 | `analog` | Cypress `framework: 'angular', bundler: 'vite'` + `viteConfig` | `@analogjs/vite-plugin-angular` `{ jit: true }` (a production monorepo's setting) |
 | `analog-aot` | same Vite config | `@analogjs/vite-plugin-angular` `{ jit: false }` |
+| `analog-fast` | same Vite config | `@analogjs/vite-plugin-angular` `{ jit: false, fastCompile: true }`: Analog's single-pass compiler. It compiles each file on request with Angular's compiler, without a TypeScript program or template type-checking |
 | `angular-build` | same Vite config | `@analogjs/vite-plugin-angular` `{ jit: false, experimental: { useAngularCompilationAPI: true } }`: compiles through `@angular/build`'s `createAngularCompilation`, the AOT pipeline of the Angular CLI's esbuild builder |
 | `angular-build-jit` | same Vite config | same, `{ jit: true }` (TestBed override parity) |
 | `oxc` | same Vite config | `@oxc-angular/vite` (AOT, emits class metadata) |
@@ -15,8 +16,7 @@ specs and components. Every run is cold: compiler and dev-server caches are dele
 
 `regular` needs two workarounds before it runs on Angular 22 (see "Setup-specific workarounds"). Without them it cannot run any spec.
 
-The `angular-build*` and `swc` setups were added in a second benchmark session later the same day. An `oxc`
-control re-run checks that both sessions are comparable (see "Control").
+All setups were benchmarked in one session, one Cypress process at a time.
 
 ## Why there is no "Cypress + esbuild" setup
 
@@ -38,43 +38,42 @@ esbuild application bundle. These setups measure Angular's compiler pipeline, no
 
 ## Pass/fail per setup
 
-| setup | all (hand-written + scale-300) | scale-300 | scale-1000 | known-oxc-bugs |
+| setup | all (hand-written + scale-300) | scale-300 | scale-1000 | known-gaps |
 |---|---|---|---|---|
-| regular | 43/43 passed | 6/6 passed | 6/6 passed | 3/3 passed |
-| analog | 43/43 passed | 6/6 passed | 6/6 passed | 3/3 passed |
-| analog-aot | **41/43 passed, 2 failed** | 6/6 passed | 6/6 passed | 3/3 passed |
-| angular-build | **41/43 passed, 2 failed** | 6/6 passed | 6/6 passed | 3/3 passed |
-| angular-build-jit | 43/43 passed | 6/6 passed | 6/6 passed | 3/3 passed |
-| oxc | 43/43 passed | 6/6 passed | 6/6 passed | **0/3 passed, 3 failed** |
-| swc | 43/43 passed | 6/6 passed | 6/6 passed | 3/3 passed |
+| regular | 41/41 passed | 6/6 passed | 6/6 passed | 5/5 passed |
+| analog | 41/41 passed | 6/6 passed | 6/6 passed | 5/5 passed |
+| analog-aot | 41/41 passed | 6/6 passed | 6/6 passed | **3/5 passed, 2 failed** |
+| analog-fast | 41/41 passed | 6/6 passed | 6/6 passed | **4/5 passed, 1 failed** |
+| angular-build | 41/41 passed | 6/6 passed | 6/6 passed | **3/5 passed, 2 failed** |
+| angular-build-jit | 41/41 passed | 6/6 passed | 6/6 passed | 5/5 passed |
+| oxc | 41/41 passed | 6/6 passed | 6/6 passed | **2/5 passed, 3 failed** |
+| swc | 41/41 passed | 6/6 passed | 6/6 passed | 5/5 passed |
 
 Pending and skipped were 0 in every run. Failures (all runs, de-duplicated):
 
-- `analog-aot` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T15:54:30.608Z'
-- `analog-aot` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces the template — AssertionError: Timed out retrying after 10000ms: Expected to find element: `[data-cy=override]`, but never found it.
-- `analog-aot` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T15:56:17.927Z'
-- `analog-aot` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T15:58:06.791Z'
-- `angular-build` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T16:24:23.135Z'
-- `angular-build` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces the template — AssertionError: Timed out retrying after 10000ms: Expected to find element: `[data-cy=override]`, but never found it.
-- `angular-build` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T16:27:07.258Z'
-- `angular-build` / all: src/app/greeting/greeting.cy.ts › GreetingComponent (TestBed overrides) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-19T16:28:23.954Z'
-- `oxc` / bugs: src/known-oxc-bugs/library-safe-url.cy.ts › known-oxc-bugs: SafeUrl bound to a library img [src] (#588) > unwraps the SafeUrl and loads the image — AssertionError: Timed out retrying after 10000ms: expected '<img>' to have attribute 'src' with the value 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==', but the value was 'SafeValue must use [property]=binding: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg== (see https://angular.dev/best-practices/security#preventing-cross-site-scripting-xss)'
-- `oxc` / bugs: src/known-oxc-bugs/safe-navigation-event.cy.ts › known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @for item value to the handler — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '2', but the text was 'null'
-- `oxc` / bugs: src/known-oxc-bugs/safe-navigation-event.cy.ts › known-oxc-bugs: $safeNavigationMigration in event bindings (#587) > passes the @if-as alias value to the handler — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '7', but the text was 'null'
+- `analog-aot` / gaps: src/known-gaps/override-component.cy.ts › known-gaps: TestBed.overrideComponent (plain AOT) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-20T08:09:39.243Z'
+- `analog-aot` / gaps: src/known-gaps/override-component.cy.ts › known-gaps: TestBed.overrideComponent (plain AOT) > overrideComponent replaces the template — AssertionError: Timed out retrying after 10000ms: Expected to find element: `[data-cy=override]`, but never found it.
+- `analog-fast` / gaps: src/known-gaps/override-component.cy.ts › known-gaps: TestBed.overrideComponent (plain AOT) > overrideComponent replaces the template — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'overridden template', but the text was 'overridden world'
+- `angular-build` / gaps: src/known-gaps/override-component.cy.ts › known-gaps: TestBed.overrideComponent (plain AOT) > overrideComponent replaces component-level providers — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-20T08:10:26.336Z'
+- `angular-build` / gaps: src/known-gaps/override-component.cy.ts › known-gaps: TestBed.overrideComponent (plain AOT) > overrideComponent replaces the template — AssertionError: Timed out retrying after 10000ms: Expected to find element: `[data-cy=override]`, but never found it.
+- `oxc` / gaps: src/known-gaps/library-safe-url.cy.ts › known-gaps: OXC SafeUrl bound to a library img [src] (#586) > unwraps the SafeUrl and loads the image — AssertionError: Timed out retrying after 10000ms: expected '<img>' to have attribute 'src' with the value 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==', but the value was 'SafeValue must use [property]=binding: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg== (see https://angular.dev/best-practices/security#preventing-cross-site-scripting-xss)'
+- `oxc` / gaps: src/known-gaps/safe-navigation-event.cy.ts › known-gaps: OXC $safeNavigationMigration in event bindings (#585) > passes the @for item value to the handler — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '2', but the text was 'null'
+- `oxc` / gaps: src/known-gaps/safe-navigation-event.cy.ts › known-gaps: OXC $safeNavigationMigration in event bindings (#585) > passes the @if-as alias value to the handler — AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text '7', but the text was 'null'
 
-## Full suite (hand-written specs + scale fixture of 300 components, bugs excluded)
+## Full suite (hand-written specs + scale fixture of 300 components)
 
 Median (min–max) of 3 cold runs per setup. Times in seconds, memory in MB.
 
 | setup | wall | vs regular | to first test | first-spec load | compile+load (all specs) | test bodies | webpack compile (sum) | peak RSS (tree) | peak PSS (tree) |
 |---|---|---|---|---|---|---|---|---|---|
-| regular | 34.2 (33.8–34.2) | 1.00× | 7.3 (7.3–7.4) | 4.2 (3.7–4.3) | 25.5 (24.6–25.5) | 5.55 (5.54–5.57) | 10.8 (10.7–10.8) | 4007 (3869–4221) | 3485 (3449–3626) |
-| analog | 29.6 (29.6–29.7) | 0.87× | 5.8 (5.7–5.8) | 1.2 (1.2–1.2) | 19.5 (19.5–19.5) | 5.49 (5.48–5.49) | – | 2535 (2534–2536) | 2078 (2076–2100) |
-| analog-aot | 49.2 (49.2–49.3) | 1.44× | 6.3 (6.2–6.4) | 1.1 (1.1–1.2) | 18.9 (18.9–19.0) | 24.75 (24.74–24.76) | – | 2685 (2585–2760) | 2185 (2169–2295) |
-| angular-build | 49.4 (49.4–49.7) | 1.44× | 6.5 (6.4–6.7) | 1.1 (1.1–1.1) | 18.9 (18.8–18.9) | 24.75 (24.75–24.76) | – | 2908 (2869–2924) | 2431 (2415–2464) |
-| angular-build-jit | 29.9 (29.8–29.9) | 0.87× | 5.9 (5.8–5.9) | 1.2 (1.2–1.2) | 19.5 (19.5–19.7) | 5.49 (5.49–5.52) | – | 2841 (2736–2856) | 2370 (2343–2407) |
-| oxc | 27.0 (27.0–27.1) | 0.79× | 3.5 (3.5–3.6) | 1.2 (1.2–1.2) | 19.6 (19.6–19.7) | 4.72 (4.70–4.72) | – | 2677 (2674–2683) | 2217 (2210–2233) |
-| swc | 27.5 (27.4–27.6) | 0.80× | 3.5 (3.4–3.5) | 1.2 (1.2–1.2) | 19.7 (19.6–19.8) | 5.38 (5.37–5.38) | – | 2518 (2457–2548) | 2041 (1992–2059) |
+| regular | 34.1 (34.0–34.5) | 1.00× | 7.3 (7.3–7.5) | 3.7 (3.7–4.3) | 25.0 (24.6–25.6) | 5.55 (5.54–5.58) | 11.1 (11.0–11.3) | 4232 (4017–4233) | 3699 (3482–3700) |
+| analog | 29.4 (29.3–29.7) | 0.86× | 5.8 (5.6–5.9) | 1.1 (1.1–1.1) | 19.2 (19.2–19.4) | 5.46 (5.45–5.47) | – | 2688 (2611–2691) | 2142 (2111–2144) |
+| analog-aot | 29.6 (29.6–29.6) | 0.87× | 6.3 (6.3–6.3) | 1.1 (1.1–1.1) | 19.3 (19.3–19.3) | 4.71 (4.71–4.74) | – | 2611 (2609–2625) | 2179 (2167–2186) |
+| analog-fast | 28.5 (28.4–28.7) | 0.83× | 5.2 (5.2–5.3) | 1.1 (1.1–1.1) | 19.2 (19.2–19.4) | 4.72 (4.70–4.74) | – | 2198 (2158–2224) | 1745 (1742–1753) |
+| angular-build | 29.7 (29.6–29.7) | 0.87× | 6.5 (6.4–6.5) | 1.1 (1.0–1.1) | 19.2 (19.1–19.2) | 4.73 (4.69–4.73) | – | 2956 (2801–2996) | 2381 (2365–2492) |
+| angular-build-jit | 29.5 (29.5–29.6) | 0.86× | 5.9 (5.8–5.9) | 1.1 (1.0–1.1) | 19.2 (19.2–19.3) | 5.48 (5.45–5.48) | – | 2761 (2731–2795) | 2291 (2282–2310) |
+| oxc | 26.8 (26.7–26.9) | 0.78× | 3.4 (3.4–3.5) | 1.1 (1.1–1.1) | 19.4 (19.3–19.5) | 4.74 (4.71–4.79) | – | 2736 (2688–2767) | 2182 (2146–2213) |
+| swc | 27.2 (27.2–27.3) | 0.80× | 3.4 (3.4–3.5) | 1.1 (1.1–1.1) | 19.5 (19.4–19.5) | 5.38 (5.37–5.40) | – | 2491 (2460–2537) | 2004 (1965–2023) |
 
 ## Scale fixture alone, 300 generated components (3 specs)
 
@@ -82,13 +81,14 @@ Median (min–max) of 3 cold runs per setup. Times in seconds, memory in MB.
 
 | setup | wall | vs regular | to first test | first-spec load | compile+load (all specs) | test bodies | webpack compile (sum) | peak RSS (tree) | peak PSS (tree) |
 |---|---|---|---|---|---|---|---|---|---|
-| regular | 13.6 (13.6–13.8) | 1.00× | 8.3 (8.2–8.3) | 4.6 (4.5–5.2) | 8.8 (8.7–9.3) | 1.19 (1.19–1.20) | 8.1 (8.1–8.2) | 3447 (3254–3490) | 3023 (2899–3093) |
-| analog | 9.9 (9.9–10.1) | 0.73× | 6.0 (6.0–6.1) | 1.7 (1.6–1.7) | 4.3 (4.3–4.4) | 1.18 (1.16–1.18) | – | 2455 (2432–2671) | 2075 (2056–2082) |
-| analog-aot | 9.9 (9.9–10.0) | 0.73× | 6.3 (6.3–6.3) | 1.3 (1.3–1.4) | 4.0 (4.0–4.1) | 0.60 (0.59–0.60) | – | 2558 (2510–2664) | 2183 (2145–2186) |
-| angular-build | 10.6 (10.4–10.7) | 0.78× | 6.9 (6.7–7.0) | 1.4 (1.4–1.4) | 4.1 (4.1–4.1) | 0.61 (0.60–0.62) | – | 2839 (2779–2839) | 2366 (2350–2400) |
-| angular-build-jit | 10.5 (10.5–10.9) | 0.77× | 6.5 (6.5–6.8) | 1.8 (1.7–1.9) | 4.5 (4.4–4.7) | 1.21 (1.18–1.22) | – | 2916 (2758–2976) | 2420 (2284–2470) |
-| oxc | 7.3 (7.2–7.3) | 0.53× | 3.7 (3.6–3.7) | 1.4 (1.4–1.4) | 4.0 (4.0–4.1) | 0.60 (0.60–0.60) | – | 2511 (2504–2516) | 2133 (2126–2137) |
-| swc | 8.1 (8.0–8.2) | 0.60× | 4.0 (4.0–4.1) | 1.7 (1.7–1.8) | 4.5 (4.4–4.6) | 1.19 (1.19–1.23) | – | 2343 (2283–2387) | 1933 (1878–1961) |
+| regular | 13.4 (13.3–13.5) | 1.00× | 8.0 (7.9–8.1) | 4.6 (4.5–5.0) | 8.7 (8.7–9.0) | 1.19 (1.17–1.20) | 8.0 (7.8–8.0) | 3502 (3283–3542) | 3006 (2866–3046) |
+| analog | 9.9 (9.8–9.9) | 0.74× | 6.0 (6.0–6.0) | 1.6 (1.6–1.6) | 4.2 (4.2–4.2) | 1.18 (1.17–1.18) | – | 2540 (2504–2541) | 2116 (2077–2129) |
+| analog-aot | 9.8 (9.8–9.8) | 0.73× | 6.2 (6.2–6.2) | 1.3 (1.2–1.3) | 3.9 (3.8–3.9) | 0.59 (0.59–0.59) | – | 2589 (2582–2591) | 2175 (2168–2180) |
+| analog-fast | 8.9 (8.8–8.9) | 0.66× | 5.3 (5.2–5.3) | 1.2 (1.2–1.3) | 3.9 (3.8–3.9) | 0.60 (0.59–0.61) | – | 2116 (2114–2140) | 1709 (1695–1722) |
+| angular-build | 10.2 (10.1–10.2) | 0.76× | 6.6 (6.5–6.6) | 1.3 (1.2–1.3) | 3.9 (3.9–3.9) | 0.59 (0.58–0.59) | – | 2781 (2756–2840) | 2358 (2329–2359) |
+| angular-build-jit | 10.1 (10.0–10.1) | 0.75× | 6.2 (6.2–6.3) | 1.6 (1.6–1.6) | 4.2 (4.2–4.2) | 1.17 (1.16–1.18) | – | 2899 (2899–2931) | 2409 (2387–2449) |
+| oxc | 7.1 (7.0–7.1) | 0.53× | 3.5 (3.4–3.5) | 1.3 (1.2–1.3) | 3.9 (3.8–3.9) | 0.60 (0.60–0.61) | – | 2623 (2479–2625) | 2112 (2071–2142) |
+| swc | 7.8 (7.7–7.8) | 0.58× | 3.8 (3.8–3.9) | 1.6 (1.5–1.6) | 4.3 (4.2–4.3) | 1.16 (1.16–1.16) | – | 2371 (2335–2432) | 1894 (1884–1934) |
 
 ## Scale fixture alone, 1000 generated components (3 specs)
 
@@ -96,126 +96,114 @@ Median (min–max) of 3 cold runs per setup. Times in seconds, memory in MB.
 
 | setup | wall | vs regular | to first test | first-spec load | compile+load (all specs) | test bodies | webpack compile (sum) | peak RSS (tree) | peak PSS (tree) |
 |---|---|---|---|---|---|---|---|---|---|
-| regular | 20.9 (20.9–21.0) | 1.00× | 10.5 (10.5–10.7) | 7.1 (6.5–7.2) | 14.8 (14.2–15.0) | 2.48 (2.48–2.53) | 13.7 (13.6–13.8) | 3927 (3722–4008) | 3516 (3341–3558) |
-| analog | 15.6 (15.3–15.6) | 0.74× | 8.5 (8.4–8.5) | 2.7 (2.7–2.7) | 7.3 (7.1–7.3) | 2.41 (2.41–2.43) | – | 2600 (2584–2784) | 2223 (2206–2321) |
-| analog-aot | 12.9 (12.9–13.0) | 0.62× | 9.0 (9.0–9.1) | 1.8 (1.8–1.8) | 4.6 (4.6–4.7) | 0.95 (0.95–0.95) | – | 2695 (2673–2710) | 2318 (2301–2336) |
-| angular-build | 13.7 (13.6–13.7) | 0.65× | 9.7 (9.7–9.7) | 1.8 (1.8–1.9) | 4.8 (4.7–4.8) | 0.97 (0.95–0.98) | – | 3241 (3186–3280) | 2746 (2708–2798) |
-| angular-build-jit | 16.1 (16.0–16.2) | 0.77× | 8.7 (8.7–8.8) | 2.8 (2.7–2.9) | 7.5 (7.4–7.7) | 2.49 (2.49–2.52) | – | 2983 (2968–3025) | 2499 (2488–2542) |
-| oxc | 8.5 (8.4–8.5) | 0.41× | 4.5 (4.5–4.6) | 1.8 (1.8–1.9) | 4.7 (4.6–4.7) | 0.99 (0.99–1.00) | – | 2779 (2772–2835) | 2332 (2274–2372) |
-| swc | 12.8 (12.8–13.0) | 0.61× | 5.5 (5.5–5.6) | 2.9 (2.8–2.9) | 7.6 (7.6–7.7) | 2.46 (2.44–2.48) | – | 2567 (2527–2584) | 2068 (1998–2104) |
-
-## Control: drift between the two benchmark sessions
-
-`oxc` was re-run (`all` pass, 3 cold runs) at the end of the second session. That session benchmarked
-`angular-build`, `angular-build-jit` and `swc` and started about 20 minutes after the first one ended. Before both
-sessions about 40 GB of memory was available, and the load average before the second was about 1.
-
-Session 2 came out 1–5% slower on the timing metrics. Compare session-2 setups (`angular-build*`, `swc`) with session-1
-setups with that margin in mind. Differences of 10% or more are real.
-
-| setup | metric | session 1 (`all`) | session 2 (`all-control`) | drift |
-|---|---|---|---|---|
-| oxc | wall | 27.0 (27.0–27.1) | 27.5 (27.4–27.5) | 1.5% |
-| oxc | to first test | 3.5 (3.5–3.6) | 3.7 (3.6–3.7) | 4.7% |
-| oxc | compile+load | 19.6 (19.6–19.7) | 19.9 (19.8–19.9) | 1.4% |
-| oxc | test bodies | 4.72 (4.70–4.72) | 4.79 (4.77–4.79) | 1.3% |
-| oxc | peak PSS (MB) | 2217 (2210–2233) | 2142 (2081–2190) | -3.4% |
+| regular | 20.8 (20.8–21.0) | 1.00× | 10.6 (10.5–10.6) | 6.5 (6.5–6.7) | 14.2 (14.1–14.4) | 2.50 (2.48–2.51) | 13.7 (13.6–13.7) | 3915 (3845–3945) | 3430 (3291–3527) |
+| analog | 15.1 (15.1–15.2) | 0.73× | 8.3 (8.2–8.3) | 2.6 (2.6–2.6) | 6.9 (6.9–7.0) | 2.37 (2.37–2.45) | – | 2687 (2639–2699) | 2253 (2221–2266) |
+| analog-aot | 12.7 (12.7–12.8) | 0.61× | 8.9 (8.9–8.9) | 1.7 (1.6–1.7) | 4.4 (4.4–4.5) | 0.97 (0.94–0.98) | – | 2828 (2752–2834) | 2336 (2331–2338) |
+| analog-fast | 11.5 (11.4–11.6) | 0.55× | 7.6 (7.6–7.7) | 1.7 (1.7–1.7) | 4.5 (4.4–4.5) | 0.95 (0.93–0.97) | – | 2360 (2333–2433) | 1881 (1821–1943) |
+| angular-build | 12.9 (12.9–13.0) | 0.62× | 9.1 (9.1–9.2) | 1.7 (1.7–1.7) | 4.4 (4.4–4.4) | 0.94 (0.94–0.95) | – | 3134 (3067–3251) | 2678 (2645–2724) |
+| angular-build-jit | 15.1 (14.9–15.5) | 0.72× | 8.3 (8.2–8.5) | 2.6 (2.5–2.7) | 7.0 (6.9–7.3) | 2.36 (2.35–2.42) | – | 2896 (2817–2903) | 2412 (2400–2475) |
+| oxc | 8.3 (8.2–8.3) | 0.40× | 4.4 (4.4–4.4) | 1.7 (1.7–1.7) | 4.5 (4.5–4.5) | 0.99 (0.98–0.99) | – | 2767 (2751–2802) | 2288 (2280–2313) |
+| swc | 12.1 (12.1–12.2) | 0.58× | 5.2 (5.2–5.2) | 2.6 (2.6–2.6) | 7.2 (7.1–7.2) | 2.36 (2.34–2.43) | – | 2463 (2452–2529) | 2021 (1979–2041) |
 
 ## Per-spec durations, full suite
 
 Median per spec: `compile+load / test bodies` in seconds (see methodology for the boundaries).
 
-| spec | regular | analog | analog-aot | angular-build | angular-build-jit | oxc | swc |
-|---|---|---|---|---|---|---|---|
-| app/card/card.cy.ts | 4.22 / 0.07 | 1.20 / 0.07 | 1.14 / 0.07 | 1.10 / 0.07 | 1.16 / 0.07 | 1.18 / 0.06 | 1.18 / 0.06 |
-| app/control-flow/control-flow.cy.ts | 1.35 / 0.28 | 1.46 / 0.26 | 1.45 / 0.24 | 1.46 / 0.24 | 1.46 / 0.27 | 1.46 / 0.24 | 1.47 / 0.26 |
-| app/counter/counter.cy.ts | 1.36 / 0.60 | 1.29 / 0.59 | 1.35 / 0.56 | 1.31 / 0.57 | 1.29 / 0.59 | 1.33 / 0.57 | 1.30 / 0.58 |
-| app/dialog/dialog.cy.ts | 1.52 / 0.52 | 1.02 / 0.52 | 0.99 / 0.50 | 0.99 / 0.50 | 0.98 / 0.52 | 1.06 / 0.49 | 1.03 / 0.50 |
-| app/encapsulation/encapsulation.cy.ts | 1.75 / 0.07 | 0.99 / 0.08 | 1.02 / 0.06 | 1.02 / 0.06 | 1.47 / 0.07 | 0.99 / 0.06 | 0.97 / 0.07 |
-| app/greeting/greeting.cy.ts | 1.08 / 0.07 | 1.19 / 0.08 | 1.51 / 20.08 | 1.50 / 20.08 | 1.03 / 0.07 | 1.20 / 0.06 | 1.49 / 0.07 |
-| app/highlight/highlight.cy.ts | 1.56 / 0.39 | 1.47 / 0.38 | 1.00 / 0.38 | 0.89 / 0.38 | 1.51 / 0.38 | 1.50 / 0.37 | 1.48 / 0.38 |
-| app/lib-usage/lib-usage.cy.ts | 1.46 / 0.06 | 1.46 / 0.05 | 0.91 / 0.05 | 1.20 / 0.05 | 1.19 / 0.05 | 1.49 / 0.05 | 1.18 / 0.05 |
-| app/pipes/pipes.cy.ts | 1.52 / 0.06 | 1.50 / 0.06 | 1.51 / 0.05 | 1.49 / 0.04 | 1.47 / 0.06 | 1.53 / 0.04 | 1.48 / 0.05 |
-| app/router/router.cy.ts | 1.53 / 0.23 | 1.52 / 0.22 | 1.52 / 0.20 | 1.56 / 0.20 | 1.53 / 0.22 | 1.58 / 0.20 | 1.57 / 0.20 |
-| app/signup-form/signup-form.cy.ts | 1.32 / 1.65 | 1.32 / 1.65 | 1.35 / 1.63 | 1.34 / 1.63 | 1.33 / 1.65 | 1.34 / 1.63 | 1.31 / 1.65 |
-| app/user-list/user-list.cy.ts | 1.36 / 0.37 | 0.90 / 0.36 | 0.91 / 0.35 | 0.91 / 0.35 | 0.89 / 0.36 | 0.91 / 0.34 | 0.92 / 0.36 |
-| scale/specs/scale-0.cy.ts | 1.84 / 0.40 | 1.60 / 0.39 | 1.39 / 0.20 | 1.37 / 0.20 | 1.61 / 0.40 | 1.36 / 0.20 | 1.61 / 0.38 |
-| scale/specs/scale-1.cy.ts | 1.79 / 0.39 | 1.30 / 0.39 | 1.37 / 0.20 | 1.35 / 0.19 | 1.30 / 0.39 | 1.38 / 0.20 | 1.32 / 0.38 |
-| scale/specs/scale-2.cy.ts | 1.81 / 0.39 | 1.27 / 0.39 | 1.35 / 0.19 | 1.36 / 0.20 | 1.29 / 0.39 | 1.33 / 0.20 | 1.32 / 0.39 |
+| spec | regular | analog | analog-aot | analog-fast | angular-build | angular-build-jit | oxc | swc |
+|---|---|---|---|---|---|---|---|---|
+| app/card/card.cy.ts | 3.70 / 0.07 | 1.11 / 0.07 | 1.10 / 0.07 | 1.11 / 0.07 | 1.07 / 0.07 | 1.09 / 0.07 | 1.11 / 0.06 | 1.15 / 0.07 |
+| app/control-flow/control-flow.cy.ts | 1.32 / 0.28 | 1.44 / 0.26 | 1.43 / 0.24 | 1.44 / 0.24 | 1.43 / 0.24 | 1.43 / 0.26 | 1.44 / 0.24 | 1.44 / 0.26 |
+| app/counter/counter.cy.ts | 1.32 / 0.59 | 1.29 / 0.59 | 1.30 / 0.57 | 1.00 / 0.57 | 1.27 / 0.57 | 1.26 / 0.59 | 1.27 / 0.57 | 1.26 / 0.59 |
+| app/dialog/dialog.cy.ts | 1.54 / 0.52 | 1.34 / 0.52 | 0.98 / 0.50 | 1.34 / 0.50 | 1.01 / 0.50 | 0.97 / 0.52 | 1.52 / 0.50 | 0.98 / 0.50 |
+| app/encapsulation/encapsulation.cy.ts | 1.36 / 0.07 | 0.97 / 0.07 | 1.00 / 0.06 | 1.12 / 0.06 | 0.98 / 0.06 | 0.99 / 0.08 | 1.03 / 0.06 | 0.98 / 0.07 |
+| app/greeting/greeting.cy.ts | 1.23 / 0.05 | 1.46 / 0.06 | 1.49 / 0.04 | 1.48 / 0.04 | 1.46 / 0.04 | 1.44 / 0.05 | 1.47 / 0.04 | 1.47 / 0.05 |
+| app/highlight/highlight.cy.ts | 1.77 / 0.39 | 1.48 / 0.38 | 1.50 / 0.38 | 1.49 / 0.38 | 1.49 / 0.38 | 1.48 / 0.38 | 1.51 / 0.38 | 1.47 / 0.38 |
+| app/lib-usage/lib-usage.cy.ts | 1.33 / 0.06 | 1.16 / 0.05 | 1.18 / 0.05 | 1.50 / 0.05 | 1.18 / 0.05 | 1.19 / 0.05 | 1.17 / 0.05 | 1.19 / 0.05 |
+| app/pipes/pipes.cy.ts | 1.46 / 0.06 | 1.47 / 0.06 | 1.48 / 0.04 | 1.47 / 0.04 | 1.48 / 0.04 | 1.47 / 0.06 | 1.50 / 0.04 | 1.50 / 0.05 |
+| app/router/router.cy.ts | 1.57 / 0.23 | 1.51 / 0.21 | 1.23 / 0.20 | 1.54 / 0.20 | 1.52 / 0.20 | 1.52 / 0.21 | 1.55 / 0.20 | 1.55 / 0.20 |
+| app/signup-form/signup-form.cy.ts | 1.34 / 1.66 | 1.32 / 1.65 | 1.34 / 1.63 | 1.32 / 1.63 | 1.32 / 1.63 | 1.31 / 1.65 | 1.31 / 1.64 | 1.36 / 1.64 |
+| app/user-list/user-list.cy.ts | 1.34 / 0.37 | 0.89 / 0.36 | 1.34 / 0.34 | 0.88 / 0.34 | 0.87 / 0.34 | 0.92 / 0.37 | 0.92 / 0.34 | 0.91 / 0.35 |
+| scale/specs/scale-0.cy.ts | 1.95 / 0.40 | 1.59 / 0.40 | 1.07 / 0.20 | 1.33 / 0.20 | 1.37 / 0.20 | 1.59 / 0.38 | 1.36 / 0.20 | 1.61 / 0.39 |
+| scale/specs/scale-1.cy.ts | 1.83 / 0.40 | 1.30 / 0.38 | 1.35 / 0.19 | 1.39 / 0.20 | 1.36 / 0.20 | 1.28 / 0.40 | 1.33 / 0.20 | 1.31 / 0.39 |
+| scale/specs/scale-2.cy.ts | 1.77 / 0.39 | 1.28 / 0.39 | 1.34 / 0.20 | 1.33 / 0.20 | 1.36 / 0.20 | 1.28 / 0.39 | 1.35 / 0.20 | 1.32 / 0.39 |
 
 ## Per-spec durations, scale fixture with 1000 components
 
 Median per spec: `compile+load / test bodies` in seconds (see methodology for the boundaries).
 
-| spec | regular | analog | analog-aot | angular-build | angular-build-jit | oxc | swc |
-|---|---|---|---|---|---|---|---|
-| scale/specs/scale-0.cy.ts | 7.08 / 0.86 | 2.72 / 0.81 | 1.78 / 0.32 | 1.85 / 0.34 | 2.79 / 0.84 | 1.79 / 0.34 | 2.85 / 0.83 |
-| scale/specs/scale-1.cy.ts | 4.17 / 0.82 | 2.33 / 0.82 | 1.48 / 0.32 | 1.48 / 0.32 | 2.44 / 0.85 | 1.46 / 0.34 | 2.46 / 0.83 |
-| scale/specs/scale-2.cy.ts | 3.59 / 0.81 | 2.19 / 0.78 | 1.38 / 0.31 | 1.45 / 0.31 | 2.29 / 0.82 | 1.42 / 0.32 | 2.31 / 0.80 |
+| spec | regular | analog | analog-aot | analog-fast | angular-build | angular-build-jit | oxc | swc |
+|---|---|---|---|---|---|---|---|---|
+| scale/specs/scale-0.cy.ts | 6.49 / 0.87 | 2.56 / 0.81 | 1.67 / 0.32 | 1.68 / 0.32 | 1.68 / 0.31 | 2.60 / 0.80 | 1.67 / 0.33 | 2.64 / 0.80 |
+| scale/specs/scale-1.cy.ts | 4.12 / 0.82 | 2.26 / 0.80 | 1.41 / 0.32 | 1.41 / 0.32 | 1.41 / 0.31 | 2.29 / 0.81 | 1.44 / 0.33 | 2.32 / 0.80 |
+| scale/specs/scale-2.cy.ts | 3.59 / 0.80 | 2.14 / 0.77 | 1.36 / 0.32 | 1.39 / 0.32 | 1.34 / 0.31 | 2.10 / 0.77 | 1.36 / 0.32 | 2.21 / 0.76 |
 
 ## Findings
 
 1. **Correctness.**
-   - `regular`, `analog`, `angular-build-jit` and `swc` pass everything, including the two known-bug specs.
-   - `oxc` passes all 43 main tests and fails exactly the 3 known-bug tests. Both upstream bugs reproduce on 0.0.41:
-     `$safeNavigationMigration(item?.id)` in a `(click)` handler passes `null` for a `@for` item and for an `@if … as`
-     alias (#587). A `SafeUrl` bound to a library component's `img [src]` is written out as the literal string
-     `SafeValue must use [property]=binding: …` (#588).
-   - The two plain-AOT setups, `analog-aot` and `angular-build`, fail the same 2 `TestBed.overrideComponent` tests.
-     This confirms why a production monorepo using Analog needs `jit: true`. OXC's AOT output keeps the class
-     metadata, so the same overrides pass.
-2. **Full suite (43 tests, 14 specs), wall time:**
-   - oxc 27.0 s and swc 27.5 s (0.79–0.80× regular)
-   - analog 29.6 s and angular-build-jit 29.9 s (0.87×)
-   - regular 34.2 s
-   - analog-aot and angular-build are around 49 s, but that includes 2 × 10 s of failing-assertion timeouts. Without
-     them both land around 29 s.
-3. **Most of each Vite spec is fixed Cypress cost, not compiling.** A tiny spec takes about 0.9–1.5 s from the
+   - Every setup passes every timed test: 41/41 on the full suite, 6/6 on both scale passes. The timings compare
+     the same work.
+   - The known gaps (`src/known-gaps`, not timed) split the setups:
+     - `analog-aot` and `angular-build` (plain AOT) fail the 2 `TestBed.overrideComponent` tests. AOT output drops
+       the decorator TestBed needs to recompile the component, which is why a production monorepo using Analog
+       needs `jit: true`. OXC's AOT output keeps the class metadata, so the same overrides pass.
+     - `analog-fast` fails 1 of the 2 `TestBed.overrideComponent` tests. It keeps the decorator, so overriding
+       providers and the template works, but its `setClassMetadata` call has no `propDecorators`, so the recompiled
+       component loses its inputs (analogjs/analog#2666).
+     - `oxc` fails the 3 tests of its two open upstream bugs on 0.0.41: `$safeNavigationMigration(item?.id)` in a
+       `(click)` handler passes `null` for a `@for` item and for an `@if … as` alias (issue #585, fix in PR #587),
+       and a `SafeUrl` bound to a library component's `img [src]` is written out as the literal string
+       `SafeValue must use [property]=binding: …` (issue #586, fix in PR #588).
+     - `regular`, `analog`, `angular-build-jit` and `swc` pass all 5.
+2. **Full suite (41 tests, 15 specs), wall time:**
+   - oxc 26.7 s and swc 27.2 s (0.78–0.80× regular)
+   - analog-fast 28.5 s (0.83×)
+   - analog, analog-aot, angular-build and angular-build-jit 29.4–29.7 s (0.86–0.87×)
+   - regular 34.1 s
+3. **Most of each Vite spec is fixed Cypress cost, not compiling.** A small spec takes about 0.9–1.5 s from the
    previous spec's end to its first test with every Vite setup (spec iframe reload, support file, module graph
-   import). So "compile+load" for the full suite is 18.9–19.7 s for all six Vite setups. The compiler gaps show up
+   import). So "compile+load" for the full suite is 19.2–19.5 s for all seven Vite setups. The compiler gaps show up
    in two other places:
-   - **Startup.** oxc and swc reach the first test at 3.5 s. Analog-based setups need 5.8–6.5 s and regular 7.3 s.
-     Analog runs an upfront TypeScript/Angular program analysis that grows with project size (analog 6.0 s → 8.5 s,
-     angular-build 6.9 s → 9.7 s from 300 to 1000 components). oxc (3.7 → 4.5 s) and swc (4.0 → 5.5 s) transform
-     file by file and grow much less.
+   - **Startup.** oxc and swc reach the first test at 3.5 s. analog-fast needs 5.2 s, the other Analog-based setups
+     5.8–6.5 s and regular 7.4 s. Analog runs an upfront TypeScript/Angular program analysis that grows with project
+     size (2.1–2.7 s more from 300 to 1000 components). analog-fast replaces the program with a lighter scan of every
+     file, but still grows by 2.4 s. oxc (+0.9 s) and swc (+1.3 s) transform file by file and grow much less.
    - **In-browser JIT.** The JIT setups (regular, analog, angular-build-jit, swc) compile templates in the browser on
      first mount. Their scale-spec test bodies take about 2× longer than with the AOT setups (oxc, analog-aot,
-     angular-build): 1.2 s vs 0.6 s at 300 components, 2.4–2.5 s vs 1.0 s at 1000. At 1000 components the Vite JIT
-     setups' compile+load is also 7.3–7.6 s, against 4.6–4.8 s.
+     analog-fast, angular-build): 1.2 s vs 0.6 s at 300 components, 2.4–2.5 s vs 0.9–1.0 s at 1000. At 1000
+     components the Vite JIT setups' compile+load is also 6.9–7.2 s, against 4.4–4.5 s.
 4. **The compile-heavy fixture separates the setups.** At 1000 components the wall times are:
-   - oxc 8.5 s (0.41× regular)
-   - swc 12.8 s (0.61×), analog-aot 12.9 s and angular-build 13.7 s, close together
-   - analog 15.6 s and angular-build-jit 16.1 s
-   - regular 20.9 s
+   - oxc 8.3 s (0.40× regular)
+   - analog-fast 11.5 s (0.55×), swc 12.1 s (0.58×), analog-aot 12.7 s and angular-build 12.9 s, close together
+   - analog 15.1 s and angular-build-jit 15.1 s
+   - regular 20.8 s
 
    swc's fast startup is cancelled out by the in-browser JIT cost. The AOT setups without OXC's fast startup are
-   held back by Analog's upfront analysis.
-5. **`@angular/build`'s compilation API vs Analog's own compiler.** In the same mode the CLI pipeline comes out
-   1–10% slower than Analog's default path. Most of the gap is startup: to first test 6.9 s vs 6.3 s (AOT, 300
-   components) and 9.7 s vs 9.0 s (AOT, 1000 components). With the 1–5% session drift, that is a small difference
-   at most. It uses noticeably more memory: about 8–18% more peak PSS (2.43 vs 2.19 GB AOT on the full suite, 2.75
-   vs 2.32 GB at 1000 components, 2.37 vs 2.08 GB in JIT mode). That is beyond the drift.
-6. **regular (webpack)** compiles about 4 s up front. Then, with Cypress's default `justInTimeCompile`, it
-   recompiles before every spec (sum of webpack compiles: 10.8 s for the full suite, 13.7 s for scale-1000). That
-   adds about 0.3–0.5 s per spec on top of the same ~1.3 s per-spec floor the Vite setups have.
+   held back by Analog's upfront analysis, which analog-fast shortens but does not remove.
+5. **`@angular/build`'s compilation API vs Analog's own compiler.** In the same mode the CLI pipeline is about as
+   fast: 2–6% slower to the first test (6.6 s vs 6.2 s AOT at 300 components, 9.1 s vs 8.9 s at 1000). It uses
+   9–15% more peak PSS (2.38 vs 2.18 GB AOT on the full suite, 2.68 vs 2.34 GB at 1000 components, 2.41 vs 2.12 GB
+   in JIT mode at 300).
+6. **regular (webpack)** compiles about 4.7 s up front. Then, with Cypress's default `justInTimeCompile`, it
+   recompiles before every spec (16 compiles summing 11.1 s for the full suite, 13.7 s for scale-1000). That adds
+   about 0.3–0.5 s per spec on top of the same ~1.3 s per-spec floor the Vite setups have.
 7. **Memory (peak PSS of the process tree).**
-   - regular: about 3.5 GB.
-   - Vite setups: 1.9–2.8 GB. swc is the lowest (2.0–2.1 GB), with the analog/oxc setups close to it (2.1–2.3 GB).
-   - `@angular/build` setups: the highest of the Vite setups (2.3–2.8 GB).
+   - regular: 3.0–3.7 GB, the most in every pass.
+   - Vite setups: 1.71–2.68 GB. analog-fast is the lowest (1.71–1.88 GB), then swc (1.89–2.02 GB). The other
+     analog setups and oxc are close behind (2.11–2.34 GB).
+   - `@angular/build` setups: the highest of the Vite setups (2.29–2.68 GB).
 8. **OXC does not link the pre-bundled npm packages on Vite 7.** Its linker hooks into the optimizer through
    `optimizeDeps.rolldownOptions`, which Vite 7's esbuild optimizer ignores. After an oxc run,
    `.cypress-vite/oxc/deps` still holds 16 `ɵɵngDeclareComponent` calls (CDK). They are JIT-linked in the browser,
    which is why the support file's `@angular/compiler` import is still required with oxc. Non-pre-bundled
    `node_modules` packages, such as `sandbox-ui-lib`, do go through OXC's transform-time linker. That is the path
-   where bug #588 lives.
+   where issue #586 lives.
 
 ### Caveats
 
 - The specs are small, so Cypress's fixed per-spec cost (≈1 s) dominates and squeezes the compiler differences.
   Suites with heavier components or bigger import graphs per spec should look more like the scale-1000 pass.
-- Two benchmark sessions on the same day (see "Control": session 2 was 1–5% slower). One machine, 3 cold runs per
-  setup, warm OS page cache, other desktop software running. The min–max ranges are
-  tight (mostly under 3%), but treat differences under about 10% as noise.
+- One session, one machine, 3 cold runs per setup, warm OS page cache, other desktop software running. The min–max
+  ranges are tight (mostly under 3%), but treat differences under about 10% as noise.
 - `regular` only runs after the two workarounds below. Out of the box, Cypress 15.17's Angular webpack support
   cannot run any spec on Angular 22.
 
@@ -230,10 +218,11 @@ Median per spec: `compile+load / test bodies` in seconds (see methodology for th
   `.cypress-vite/` (Vite `cacheDir`, including the optimizeDeps pre-bundle), `node_modules/.vite`,
   `node_modules/.cache` (which holds Analog's cache), `.tmp/cypress-angular-ct`, `out-tsc` and `.swc/` (SWC's Wasm plugin cache). The OS page cache stays warm: dropping it needs
   root, and it is equally warm for every setup.
-- **Spec groups:** `all` = 11 hand-written specs plus the 3 generated scale specs (37 + 6 = 43 tests). `scale` = the 3
-  scale specs alone. `scale-n1000` = the same 3 specs regenerated with 1000 components. `bugs` = `src/known-oxc-bugs`
-  (3 tests), run once per setup and kept out of every timing table. A failing test waits for the 10 s
-  `defaultCommandTimeout`, which would swamp the timings.
+- **Spec groups:** `all` = 12 hand-written specs plus the 3 generated scale specs (35 + 6 = 41 tests). `scale` = the 3
+  scale specs alone. `scale-n1000` = the same 3 specs regenerated with 1000 components. Every setup passes every test
+  of these groups, so the timings compare the same work. `gaps` = `src/known-gaps` (3 specs, 5 tests): what some
+  setups can't do (`TestBed.overrideComponent` under plain AOT and `fastCompile`, two open OXC bugs). It runs once per setup and stays
+  out of every timing table, since a failing test waits for the 10 s `defaultCommandTimeout`.
 - **Scale fixture:** `scripts/generate-scale.mjs N` writes N standalone components in chains of 10. Each one has
   `templateUrl` + `styleUrl` (SCSS with `sass:math`), three signal inputs, an `output()`, two `computed()`s,
   `@switch`/`@for`/`@if` and the `uppercase` pipe, and imports the next component in its chain. Three root components
@@ -298,9 +287,9 @@ Median per spec: `compile+load / test bodies` in seconds (see methodology for th
 With these in place `regular` uses Cypress's built-in Angular handler unchanged: angular.json `build` options merged
 with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
 
-### analog / analog-aot / angular-build / angular-build-jit / oxc / swc (Vite)
+### analog / analog-aot / analog-fast / angular-build / angular-build-jit / oxc / swc (Vite)
 
-- Same Vite config for all six. Only the Angular plugin differs. It uses a production monorepo's `optimizeDeps`
+- Same Vite config for all seven. Only the Angular plugin differs. It uses a production monorepo's `optimizeDeps`
   (`noDiscovery` plus the Angular include list), `resolve.mainFields: ['module']` and `resolve.dedupe`.
   Three entries were added to the include list: `@angular/platform-browser/testing` (`@cypress/angular` 5 imports it,
   not `platform-browser-dynamic/testing`), and `@angular/cdk/dialog` (used by the dialog spec).
@@ -312,9 +301,13 @@ with the `development` configuration, and JIT. Cypress hardcodes `aot: false`.
   Its linker registers a Rolldown `optimizeDeps` plugin, which Vite 7's esbuild optimizer ignores. Pre-bundled
   partial-compiled packages (CDK) therefore get JIT-linked at runtime through `@angular/compiler`, while
   non-pre-bundled `node_modules` packages (the sandbox's `sandbox-ui-lib`) go through its transform-time linker.
-- `analog-aot` (`jit: false`) fails `TestBed.overrideComponent` (2 tests in `greeting.cy.ts`). AOT strips the
-  decorator TestBed needs to recompile the component. This is why a production monorepo using Analog sets `jit: true`. Its timings are
-  still listed for reference.
+- `analog-aot` (`jit: false`) fails `TestBed.overrideComponent` (the 2 tests in `src/known-gaps/override-component.cy.ts`).
+  AOT strips the decorator TestBed needs to recompile the component. This is why a production monorepo using Analog
+  sets `jit: true`.
+- `analog-fast` (`jit: false, fastCompile: true`): no workaround needed. It fails 1 of the 2
+  `TestBed.overrideComponent` tests: overriding providers and the template works, but the recompiled component loses
+  its inputs. `fastCompile` emits `setClassMetadata(…, null, null)`, with no `propDecorators` or `ctorParameters`
+  ([analogjs/analog#2666](https://github.com/analogjs/analog/issues/2666), still in 2.9.0).
 
 - `angular-build` / `angular-build-jit`: no workaround needed. Analog already loads `@angular/build/private`
   (`createAngularCompilation`) itself. `@angular/build@22.2.0` was made a direct, pinned devDependency anyway, so

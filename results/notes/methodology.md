@@ -9,10 +9,11 @@
   `.cypress-vite/` (Vite `cacheDir`, including the optimizeDeps pre-bundle), `node_modules/.vite`,
   `node_modules/.cache` (which holds Analog's cache), `.tmp/cypress-angular-ct`, `out-tsc` and `.swc/` (SWC's Wasm plugin cache). The OS page cache stays warm: dropping it needs
   root, and it is equally warm for every setup.
-- **Spec groups:** `all` = 11 hand-written specs plus the 3 generated scale specs (37 + 6 = 43 tests). `scale` = the 3
-  scale specs alone. `scale-n1000` = the same 3 specs regenerated with 1000 components. `bugs` = `src/known-oxc-bugs`
-  (3 tests), run once per setup and kept out of every timing table. A failing test waits for the 10 s
-  `defaultCommandTimeout`, which would swamp the timings.
+- **Spec groups:** `all` = 12 hand-written specs plus the 3 generated scale specs (35 + 6 = 41 tests). `scale` = the 3
+  scale specs alone. `scale-n1000` = the same 3 specs regenerated with 1000 components. Every setup passes every test
+  of these groups, so the timings compare the same work. `gaps` = `src/known-gaps` (3 specs, 5 tests): what some
+  setups can't do (`TestBed.overrideComponent` under plain AOT and `fastCompile`, two open OXC bugs). It runs once per setup and stays
+  out of every timing table, since a failing test waits for the 10 s `defaultCommandTimeout`.
 - **Scale fixture:** `scripts/generate-scale.mjs N` writes N standalone components in chains of 10. Each one has
   `templateUrl` + `styleUrl` (SCSS with `sass:math`), three signal inputs, an `output()`, two `computed()`s,
   `@switch`/`@for`/`@if` and the `uppercase` pipe, and imports the next component in its chain. Three root components

@@ -8,6 +8,7 @@ setups and benchmarks them. Results: [`results/RESULTS.md`](results/RESULTS.md).
 | `regular` | Cypress `framework: 'angular', bundler: 'webpack'` (angular.json + `@angular-devkit/build-angular`) | JIT, `@ngtools/webpack` |
 | `analog` (default) | Cypress `framework: 'angular', bundler: 'vite'` + `viteConfig` | `@analogjs/vite-plugin-angular` `{ jit: true }` |
 | `analog-aot` | same Vite config | `@analogjs/vite-plugin-angular` `{ jit: false }` |
+| `analog-fast` | same Vite config | `@analogjs/vite-plugin-angular` `{ jit: false, fastCompile: true }`: Analog's single-pass compiler, one file at a time, no TypeScript program |
 | `angular-build` | same Vite config | Analog with `experimental.useAngularCompilationAPI` + `{ jit: false }`: `@angular/build`'s `createAngularCompilation` (the CLI esbuild builder's AOT pipeline) |
 | `angular-build-jit` | same Vite config | same, `{ jit: true }` |
 | `oxc` | same Vite config | `@oxc-angular/vite` (AOT with class metadata) |
@@ -35,13 +36,14 @@ dependency. Rebuild it with `node scripts/build-ui-lib.mjs` followed by `pnpm in
 CCT_SETUP=regular    pnpm exec cypress run --component
 CCT_SETUP=analog     pnpm exec cypress run --component
 CCT_SETUP=analog-aot pnpm exec cypress run --component
+CCT_SETUP=analog-fast pnpm exec cypress run --component
 CCT_SETUP=oxc        pnpm exec cypress run --component
 CCT_SETUP=angular-build     pnpm exec cypress run --component
 CCT_SETUP=angular-build-jit pnpm exec cypress run --component
 CCT_SETUP=swc               pnpm exec cypress run --component
 
 # a subset
-CCT_SETUP=oxc pnpm exec cypress run --component --spec 'src/known-oxc-bugs/*.cy.ts'
+CCT_SETUP=oxc pnpm exec cypress run --component --spec 'src/known-gaps/*.cy.ts'
 ```
 
 Set `TMPDIR=$PWD/.tmp` to keep Cypress's temporary files out of `/tmp`. The bench script does this.
@@ -50,9 +52,8 @@ Delete `.angular/`, `.cypress-vite/`, `node_modules/.cache/` and `.swc/` to get 
 ## Benchmark
 
 ```sh
-node scripts/bench.mjs --runs 3 --passes all,scale,bugs --scale-n 300
+node scripts/bench.mjs --runs 3 --passes all,scale,gaps --scale-n 300
 node scripts/bench.mjs --runs 3 --passes scale --scale-n 1000 --label n1000
-node scripts/bench.mjs --setups oxc --runs 3 --passes all --label control   # cross-session drift check
 node scripts/report.mjs          # results/runs.jsonl -> results/summary.json + results/RESULTS.md
 ```
 
@@ -64,9 +65,10 @@ it samples the RSS and PSS of the whole process tree once a second. See the meth
 - `src/app/*`: hand-written components and specs. They cover signals with `input()`/`output()`/`model()`,
   `@if/@for/@switch/@defer`, `templateUrl` + SCSS `styleUrl`, `ViewEncapsulation`, DI + `HttpClient` with
   `cy.intercept`, reactive forms, CDK dialog + connected overlay, pipes, content projection, host
-  bindings/listeners, router, a linked npm library, and `TestBed.overrideComponent`/`overrideProvider`.
-- `src/known-oxc-bugs/*`: one spec per known `@oxc-angular/vite` 0.0.41 bug (upstream PRs #587 and #588). They are
-  kept out of the timing comparison.
+  bindings/listeners, router, a linked npm library, and `TestBed.overrideProvider`. Every setup passes all of them.
+- `src/known-gaps/*`: what some setups can't do, kept out of the timing comparison:
+  `TestBed.overrideComponent` (fails under plain AOT, and loses inputs under `fastCompile`: analogjs/analog#2666)
+  and the two open `@oxc-angular/vite` 0.0.41 bugs (upstream issues #585 and #586).
 - `scripts/generate-scale.mjs`: the compile-heavy fixture generator. Its output is gitignored.
 - `cypress/tsx-import-meta-shim.ts`: workaround needed for the `regular` setup on Angular 22 (see `RESULTS.md`).
 - `pnpm-workspace.yaml`: the `webpack-dev-server` 5 override, also needed for `regular`.

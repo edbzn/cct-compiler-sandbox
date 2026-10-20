@@ -1,12 +1,12 @@
 // Cold-cache benchmark of the CCT compiler setups. Runs strictly one Cypress process at a time.
 //
-// Usage: node scripts/bench.mjs [--setups regular,analog,analog-aot,angular-build,angular-build-jit,oxc,swc] [--runs 3] [--passes all,scale,bugs]
+// Usage: node scripts/bench.mjs [--setups regular,analog,analog-aot,analog-fast,angular-build,angular-build-jit,oxc,swc] [--runs 3] [--passes all,scale,gaps]
 //                               [--scale-n 300] [--label n1000] [--out results]
 //
 // Passes (spec groups):
-//   all    hand-written specs (src/app) + the generated scale fixture specs; known-oxc-bugs excluded
+//   all    hand-written specs (src/app) + the generated scale fixture specs; every setup passes them all
 //   scale  the generated scale fixture specs only (compile-heavy)
-//   bugs   src/known-oxc-bugs only, run once per setup (pass/fail matrix, not timed)
+//   gaps   src/known-gaps only: what some setups can't do, run once per setup (pass/fail matrix, not timed)
 //
 // Per run it writes <out>/raw/<pass>/<setup>-<run>.events.jsonl (cypress.config.ts BENCH_EVENTS) and
 // appends one summary line to <out>/runs.jsonl. Logs go to <out>/logs/ (gitignored).
@@ -19,9 +19,9 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = Object.fromEntries(
   process.argv.slice(2).reduce((acc, a, i, all) => (a.startsWith('--') ? [...acc, [a.slice(2), all[i + 1]]] : acc), []),
 );
-const setups = (args.setups ?? 'regular,analog,analog-aot,angular-build,angular-build-jit,oxc,swc').split(',');
+const setups = (args.setups ?? 'regular,analog,analog-aot,analog-fast,angular-build,angular-build-jit,oxc,swc').split(',');
 const runs = Number(args.runs ?? 3);
-const passes = (args.passes ?? 'all,scale,bugs').split(',');
+const passes = (args.passes ?? 'all,scale,gaps').split(',');
 const scaleN = Number(args['scale-n'] ?? 300);
 const out = path.resolve(root, args.out ?? 'results');
 // Optional suffix for the recorded pass name, e.g. --label n1000 records pass "scale-n1000".
@@ -31,9 +31,9 @@ const tmpDir = path.join(root, '.tmp');
 const SPECS = {
   all: ['src/app/**/*.cy.ts', 'src/scale/specs/*.cy.ts'],
   scale: ['src/scale/specs/*.cy.ts'],
-  bugs: ['src/known-oxc-bugs/*.cy.ts'],
+  gaps: ['src/known-gaps/*.cy.ts'],
 };
-const PASS_RUNS = { bugs: 1 };
+const PASS_RUNS = { gaps: 1 };
 
 // Everything a compiler/dev server may cache between runs.
 const COLD_PATHS = ['.angular', '.cypress-vite', 'node_modules/.vite', 'node_modules/.cache', '.tmp/cypress-angular-ct', 'out-tsc', '.swc'];

@@ -1,0 +1,17 @@
+{"event":"bench:spawn","t":1792483818533,"setup":"angular-build","pass":"gaps","run":1}
+{"event":"config:loaded","t":1792483819292,"setup":"angular-build"}
+{"event":"vite:configureServer","t":1792483819949}
+{"event":"vite:listening","t":1792483823159}
+{"event":"vite:firstTransform","t":1792483823165}
+{"event":"before:run","t":1792483823804}
+{"event":"before:spec","t":1792483824446,"spec":"src/known-gaps/library-safe-url.cy.ts"}
+{"event":"spec:firstTest","t":1792483824873,"spec":"src/known-gaps/library-safe-url.cy.ts"}
+{"event":"after:spec","t":1792483824925,"spec":"src/known-gaps/library-safe-url.cy.ts","stats":{"duration":58,"endedAt":"2026-10-20T08:10:24.923Z","failures":0,"passes":1,"pending":0,"skipped":0,"startedAt":"2026-10-20T08:10:24.865Z","suites":1,"tests":1},"tests":[{"title":"known-gaps: OXC SafeUrl bound to a library img [src] (#586) > unwraps the SafeUrl and loads the image","state":"passed","duration":56}]}
+{"event":"before:spec","t":1792483825985,"spec":"src/known-gaps/override-component.cy.ts"}
+{"event":"spec:firstTest","t":1792483826323,"spec":"src/known-gaps/override-component.cy.ts"}
+{"event":"after:spec","t":1792483846413,"spec":"src/known-gaps/override-component.cy.ts","stats":{"duration":20095,"endedAt":"2026-10-20T08:10:46.410Z","failures":2,"passes":0,"pending":0,"skipped":0,"startedAt":"2026-10-20T08:10:26.315Z","suites":1,"tests":2},"tests":[{"title":"known-gaps: TestBed.overrideComponent (plain AOT) > overrideComponent replaces component-level providers","state":"failed","duration":10040,"error":"AssertionError: Timed out retrying after 10000ms: expected '<p>' to have text 'frozen-time', but the text was '2026-10-20T08:10:26.336Z'"},{"title":"known-gaps: TestBed.overrideComponent (plain AOT) > overrideComponent replaces the template","state":"failed","duration":10029,"error":"AssertionError: Timed out retrying after 10000ms: Expected to find element: `[data-cy=override]`, but never found it."}]}
+{"event":"before:spec","t":1792483846954,"spec":"src/known-gaps/safe-navigation-event.cy.ts"}
+{"event":"spec:firstTest","t":1792483847290,"spec":"src/known-gaps/safe-navigation-event.cy.ts"}
+{"event":"after:spec","t":1792483847472,"spec":"src/known-gaps/safe-navigation-event.cy.ts","stats":{"duration":191,"endedAt":"2026-10-20T08:10:47.471Z","failures":0,"passes":2,"pending":0,"skipped":0,"startedAt":"2026-10-20T08:10:47.280Z","suites":1,"tests":2},"tests":[{"title":"known-gaps: OXC $safeNavigationMigration in event bindings (#585) > passes the @for item value to the handler","state":"passed","duration":109},{"title":"known-gaps: OXC $safeNavigationMigration in event bindings (#585) > passes the @if-as alias value to the handler","state":"passed","duration":80}]}
+{"event":"after:run","t":1792483847967,"totalTests":5,"totalPassed":3,"totalFailed":2,"totalPending":0,"totalSkipped":0,"totalDuration":20344}
+{"event":"vite:buildEnd","t":1792483847982,"transforms":36}
